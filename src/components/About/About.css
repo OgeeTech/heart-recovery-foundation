@@ -1,0 +1,36 @@
+/* Reusable button styled like .btn-outline-light */
+.btn-1 {
+    border: 1px solid #bdcb38 ;
+    color: #1e3e33 ;
+    background-color: transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-1 .btn-sm-square {
+    background-color: #1e3e33 !important;
+    color: #bdcb38 !important;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .btn-1 .btn-sm-square i {
+    color: #bdcb38 !important;
+  }
+  
+  /* Hover styles */
+  .btn-1:hover {
+    background-color: #bdcb38 !important;
+    color: #1e3e33 !important;
+  }
+  
+  .btn-1:hover .btn-sm-square {
+    background-color: #bdcb38  !important;
+  }
+  
+  .btn-1:hover .btn-sm-square i {
+    color: #1e3e33 !important;
+  }
+  
+  .about-border{
+    border-bottom: 5px solid #1e3e33 !important;
+  }

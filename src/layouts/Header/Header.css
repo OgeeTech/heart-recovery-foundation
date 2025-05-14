@@ -1,0 +1,86 @@
+.fab:hover {
+  color: #fff;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between; /* Maintain spacing between left and right sections */
+  align-items: center;
+  padding: 0.5rem 2rem;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+}
+
+.top-bar .text-start,
+.top-bar .text-end {
+  display: flex; /* Align items within the left and right sections */
+  align-items: center;
+}
+
+.top-bar .text-start > small {
+  margin-right: 1.5rem; /* Add spacing between contact info items */
+}
+
+.top-bar .text-end > small {
+  margin-left: 0; /* Reset default margin for the "Follow us:" text */
+}
+
+.top-bar .text-end > a {
+  margin-left: 0.75rem; /* Add spacing between social media icons */
+}
+
+.logo-circle {
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-img {
+  width: 130px;
+  height: 100%;
+  align-items: center;
+}
+
+.transparent-navbar {
+  background-color: transparent !important;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.scrolled-navbar {
+  background-color: #1e3e33 !important;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* first button */
+.btn-outline-light .btn-sm-square {
+  background-color: #fff !important; /* Ensure white background initially */
+}
+
+.btn-outline-light .btn-sm-square i {
+  color: #bdcb38 ; /* Set the arrow color */
+}
+
+/* Hover styles for the button */
+.btn-outline-light:hover {
+  background-color: #bdcb38 !important; /* Hover background */
+  color: #1e3e33 !important; /* Hover text color */
+}
+
+/* Hover style for the arrow span (to maintain white background on hover) */
+.btn-outline-light:hover .btn-sm-square {
+  background-color: #fff !important;
+}
+
+/* Hover style for the arrow icon */
+.btn-outline-light:hover .btn-sm-square i {
+  color: #1e3e33 !important; /* Ensure arrow color remains the same on hover */
+}
+
+
+/*second button*/

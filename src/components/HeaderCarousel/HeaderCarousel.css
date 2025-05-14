@@ -1,0 +1,116 @@
+/* 1) ensure every slide is a positioned container */
+.carousel-item {
+  position: relative;
+}
+
+/* 2) make the caption a full‑slide overlay */
+.carousel-caption {
+  position: absolute;    /* ← added */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(0, 29, 35, 0.8);
+  z-index: 2;            /* sit above the image */
+}
+
+/* 3) ensure the image sits below the overlay */
+.carousel-item img {
+  position: relative;
+  z-index: 1;
+}
+
+.carousel-caption {
+  pointer-events: none; /* Allows clicks/swipes to pass through */
+}
+
+.carousel-caption * {
+  pointer-events: auto; /* Enables interaction with the content inside */
+}
+/*** Header ***/
+.carousel-caption {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(0, 29, 35, .8);
+    z-index: 1;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 15%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--dark);
+    border: 12px solid var(--dark);
+    border-radius: 3rem;
+}
+
+@media (max-width: 768px) {
+    #header-carousel .carousel-item {
+        position: relative;
+        min-height: 450px;
+    }
+    
+    #header-carousel .carousel-item img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+
+/* Base styles for dark green button */
+.btn-2 {
+  background-color: #bdcb38 ;
+  color: #1e3e33 !important;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+/* Circle styles */
+.btn-2 .btn-sm-square {
+  background-color: #1e3e33  !important;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-2 .btn-sm-square i {
+  color: #bdcb38  !important;
+}
+
+/* Hover styles */
+.btn-2:hover {
+  background-color: transparent !important;
+  border-color: #bdcb38 !important;
+  color: #bdcb38 !important;
+}
+
+.btn-2:hover .btn-sm-square {
+  background-color: #bdcb38 !important;
+}
+
+.btn-2:hover .btn-sm-square i {
+  color: #1e3e33 !important;
+}
+
+/* .next-arrow{
+  background-color:red !important;
+} */
