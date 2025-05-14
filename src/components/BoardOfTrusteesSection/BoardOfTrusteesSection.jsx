@@ -1,7 +1,7 @@
 // src/components/BoardOfTrusteesSection.jsx
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./BoardOfTrusteesSection.css";
-import { useRef } from "react";
+
 const BoardOfTrusteesData = [
   {
     img: "/img/board1.jpg",
@@ -68,28 +68,67 @@ const TrusteeCard = ({ trustee }) => {
 // Main section component
 const BoardOfTrusteesSection = () => {
   const containerRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const cardsToShow = 4;
-  const showNavigation = BoardOfTrusteesData.length > cardsToShow;
+  const isMobile = window.innerWidth <= 600;
+  const showNavigation =
+    BoardOfTrusteesData.length > (isMobile ? 1 : cardsToShow);
 
   const handleNext = () => {
     if (containerRef.current) {
-      const cardWidth = containerRef.current.offsetWidth / cardsToShow;
-      containerRef.current.scrollLeft += cardWidth;
+      const scrollAmount = isMobile
+        ? containerRef.current.offsetWidth
+        : containerRef.current.offsetWidth / cardsToShow;
+      containerRef.current.scrollLeft += scrollAmount;
+      setCurrentIndex((prevIndex) =>
+        Math.min(
+          prevIndex + 1,
+          BoardOfTrusteesData.length - (isMobile ? 1 : cardsToShow)
+        )
+      );
     }
   };
 
   const handlePrev = () => {
     if (containerRef.current) {
-      const cardWidth = containerRef.current.offsetWidth / cardsToShow;
-      containerRef.current.scrollLeft -= cardWidth;
+      const scrollAmount = isMobile
+        ? containerRef.current.offsetWidth
+        : containerRef.current.offsetWidth / cardsToShow;
+      containerRef.current.scrollLeft -= scrollAmount;
+      setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
     }
   };
 
+  useEffect(() => {
+    let autoScrollInterval;
+
+    if (isMobile && BoardOfTrusteesData.length > 1) {
+      autoScrollInterval = setInterval(() => {
+        setCurrentIndex(
+          (prevIndex) => (prevIndex + 1) % BoardOfTrusteesData.length
+        );
+        if (containerRef.current) {
+          containerRef.current.scrollLeft =
+            (currentIndex + 1) * containerRef.current.offsetWidth;
+        }
+      }, 3000); // Adjust the interval (in milliseconds) as needed
+    }
+
+    return () => clearInterval(autoScrollInterval); // Cleanup on unmount or when isMobile changes
+  }, [isMobile, BoardOfTrusteesData.length, currentIndex]);
+
+  useEffect(() => {
+    if (isMobile && containerRef.current) {
+      containerRef.current.scrollLeft =
+        currentIndex * containerRef.current.offsetWidth;
+    }
+  }, [isMobile, currentIndex]);
+
   return (
     <section className="board-section">
-       <h2 className="text-center mb-4 heading">Board Of Trustees</h2>
+      <h2 className="text-center mb-4 heading">Board Of Trustees</h2>
       <div className="trustee-carousel-container">
-        {showNavigation && (
+        {showNavigation && !isMobile && (
           <button
             className="carousel-control-prev"
             type="button"
@@ -101,10 +140,15 @@ const BoardOfTrusteesSection = () => {
         )}
         <div className="trustee-grid" ref={containerRef}>
           {BoardOfTrusteesData.map((trustee, index) => (
-            <TrusteeCard key={index} trustee={trustee} />
+            <div
+              key={index}
+              className={`trustee-item ${isMobile ? "mobile-card" : ""}`}
+            >
+              <TrusteeCard trustee={trustee} />
+            </div>
           ))}
         </div>
-        {showNavigation && (
+        {showNavigation && !isMobile && (
           <button
             className="carousel-control-next"
             type="button"
@@ -113,6 +157,32 @@ const BoardOfTrusteesSection = () => {
             <span className="carousel-control-next-icon" aria-hidden="true" />
             <span className="visually-hidden">Next</span>
           </button>
+        )}
+        {isMobile && showNavigation && (
+          <div className="mobile-navigation">
+            <button
+              className="mobile-prev-btn"
+              onClick={() =>
+                setCurrentIndex(
+                  (prev) =>
+                    (prev - 1 + BoardOfTrusteesData.length) %
+                    BoardOfTrusteesData.length
+                )
+              }
+            >
+              &lt;
+            </button>
+            <button
+              className="mobile-next-btn"
+              onClick={() =>
+                setCurrentIndex(
+                  (prev) => (prev + 1) % BoardOfTrusteesData.length
+                )
+              }
+            >
+              &gt;
+            </button>
+          </div>
         )}
       </div>
     </section>
