@@ -70,7 +70,6 @@ const TrusteeCard = ({ trustee }) => {
 
 const BoardOfTrusteesSection = () => {
   const containerRef = useRef(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const cardsToShow = 4;
 
@@ -97,11 +96,6 @@ const BoardOfTrusteesSection = () => {
       maxScroll
     );
     containerRef.current.scrollTo({ left: newLeft, behavior: "smooth" });
-    setCurrentIndex((prev) =>
-      isMobile
-        ? (prev + 1) % BoardOfTrusteesData.length
-        : Math.min(prev + 1, BoardOfTrusteesData.length - cardsToShow)
-    );
   };
 
   const handlePrev = () => {
@@ -111,19 +105,25 @@ const BoardOfTrusteesSection = () => {
       0
     );
     containerRef.current.scrollTo({ left: newLeft, behavior: "smooth" });
-    setCurrentIndex((prev) =>
-      isMobile
-        ? (prev - 1 + BoardOfTrusteesData.length) % BoardOfTrusteesData.length
-        : Math.max(prev - 1, 0)
-    );
   };
 
-  // Auto-scroll mobile
+  // Auto-scroll for mobile view
   useEffect(() => {
     if (!isMobile) return;
-    const id = setInterval(handleNext, 3000);
-    return () => clearInterval(id);
-  }, [isMobile]);
+
+    const intervalId = setInterval(() => {
+      if (!containerRef.current) return;
+      const maxScroll =
+        containerRef.current.scrollWidth - containerRef.current.offsetWidth;
+      const newLeft = Math.min(
+        containerRef.current.scrollLeft + scrollItemWidth,
+        maxScroll
+      );
+      containerRef.current.scrollTo({ left: newLeft, behavior: "smooth" });
+    }, 3000);
+
+    return () => clearInterval(intervalId);
+  }, [isMobile, scrollItemWidth]);
 
   return (
     <section className="board-section">
