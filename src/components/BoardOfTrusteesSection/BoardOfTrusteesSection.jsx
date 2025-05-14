@@ -28,13 +28,13 @@ const BoardOfTrusteesData = [
     text: `Adeleke A. Adeoye is a Public Health Physician with a decade in both private and public sectors. He earned a NYSC Meritorious Award and is currently undertaking doctoral training in South Australia.`,
   },
   {
-    img: "/img/team-1.jpg",
+    img: "/img/team-1.jpg", // Assuming this is a placeholder, update if needed
     name: "Mr. Stephen Nwika Yeeh",
     profession: "Member, Board of Trustees",
     text: `Stephen Nwika Yeeh is a social work and community development expert with advanced public administration training. He is an active member of the Nigeria Association of Social Workers.`,
   },
   {
-    img: "/img/team-2.jpg",
+    img: "/img/team-2.jpg", // Assuming this is a placeholder, update if needed
     name: "Mrs. Aisha Maina",
     profession: "Secretary",
     text: `Aisha Maina is an experienced administrator with a background in organizational management and public relations. She ensures the smooth operation of the Board's activities.`,
@@ -44,14 +44,24 @@ const BoardOfTrusteesData = [
 // Single flip-card component
 const TrusteeCard = ({ trustee }) => {
   const [flipped, setFlipped] = useState(false);
+  // Determine if the current environment is mobile based on window width
+  // This is a common approach but ideally, for full SSR compatibility or more complex scenarios,
+  // this might be handled differently or passed as a prop.
+  const isMobileView =
+    typeof window !== "undefined" && window.innerWidth <= 600;
 
   return (
     <div
       className="trustee-flip-card"
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
+      onMouseEnter={() => !isMobileView && setFlipped(true)} // Disable flip on hover for mobile
+      onMouseLeave={() => !isMobileView && setFlipped(false)} // Disable flip on hover for mobile
+      // onClick could be used for mobile flip if desired, but current CSS disables it
     >
-      <div className={`trustee-flip-inner ${flipped ? "flipped" : ""}`}>
+      <div
+        className={`trustee-flip-inner ${
+          flipped && !isMobileView ? "flipped" : ""
+        }`}
+      >
         <div className="trustee-card-front">
           <img src={trustee.img} alt={trustee.name} />
           <h5>{trustee.name}</h5>
@@ -69,70 +79,97 @@ const TrusteeCard = ({ trustee }) => {
 const BoardOfTrusteesSection = () => {
   const containerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const cardsToShow = 4;
-  const isMobile = window.innerWidth <= 600;
+  const [isMobile, setIsMobile] = useState(false); // State for mobile view
+
+  const cardsToShow = 4; // For desktop view
+
+  // Effect to check and set mobile state on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 600);
+    };
+    checkMobile(); // Initial check
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const showNavigation =
     BoardOfTrusteesData.length > (isMobile ? 1 : cardsToShow);
 
   const handleNext = () => {
     if (containerRef.current) {
-      const scrollAmount = isMobile
-        ? containerRef.current.offsetWidth
-        : containerRef.current.offsetWidth / cardsToShow;
-      containerRef.current.scrollLeft += scrollAmount;
+      // Desktop scrolling logic (direct manipulation)
+      const scrollAmount = containerRef.current.offsetWidth / cardsToShow;
+      // Calculate new scrollLeft target
+      const newScrollLeft = Math.min(
+        containerRef.current.scrollLeft + scrollAmount,
+        containerRef.current.scrollWidth - containerRef.current.offsetWidth
+      );
+      containerRef.current.scrollLeft = newScrollLeft;
+
+      // Update currentIndex for desktop (optional, if needed for other logic)
+      // This logic might need refinement if desktop also needs precise index tracking
+      // based on scroll position rather than fixed items.
+      // For simplicity, we can also tie desktop index to card visibility.
       setCurrentIndex((prevIndex) =>
-        Math.min(
-          prevIndex + 1,
-          BoardOfTrusteesData.length - (isMobile ? 1 : cardsToShow)
-        )
+        Math.min(prevIndex + 1, BoardOfTrusteesData.length - cardsToShow)
       );
     }
   };
 
   const handlePrev = () => {
     if (containerRef.current) {
-      const scrollAmount = isMobile
-        ? containerRef.current.offsetWidth
-        : containerRef.current.offsetWidth / cardsToShow;
-      containerRef.current.scrollLeft -= scrollAmount;
+      // Desktop scrolling logic (direct manipulation)
+      const scrollAmount = containerRef.current.offsetWidth / cardsToShow;
+      // Calculate new scrollLeft target
+      const newScrollLeft = Math.max(
+        containerRef.current.scrollLeft - scrollAmount,
+        0
+      );
+      containerRef.current.scrollLeft = newScrollLeft;
+
+      // Update currentIndex for desktop
       setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
     }
   };
 
+  // Auto-scroll for mobile
   useEffect(() => {
     let autoScrollInterval;
-
     if (isMobile && BoardOfTrusteesData.length > 1) {
       autoScrollInterval = setInterval(() => {
         setCurrentIndex(
           (prevIndex) => (prevIndex + 1) % BoardOfTrusteesData.length
         );
-        if (containerRef.current) {
-          containerRef.current.scrollLeft =
-            (currentIndex + 1) * containerRef.current.offsetWidth;
-        }
-      }, 3000); // Adjust the interval (in milliseconds) as needed
+      }, 3000); // Auto-scroll interval: 3 seconds
     }
+    return () => clearInterval(autoScrollInterval);
+  }, [isMobile, BoardOfTrusteesData.length, currentIndex]); // currentIndex in deps restarts interval on change
 
-    return () => clearInterval(autoScrollInterval); // Cleanup on unmount or when isMobile changes
-  }, [isMobile, BoardOfTrusteesData.length, currentIndex]);
-
+  // Scroll effect for mobile when currentIndex changes
   useEffect(() => {
     if (isMobile && containerRef.current) {
-      containerRef.current.scrollLeft =
-        currentIndex * containerRef.current.offsetWidth;
+      // Ensure the containerRef has its children rendered and width calculated.
+      const itemWidth = containerRef.current.offsetWidth; // This is the width of the scroll container.
+      // Each item is 100% of this on mobile.
+      if (itemWidth > 0) {
+        containerRef.current.scrollLeft = currentIndex * itemWidth;
+      }
     }
-  }, [isMobile, currentIndex]);
+  }, [isMobile, currentIndex, BoardOfTrusteesData.length]); // Added BoardOfTrusteesData.length as it might affect total scroll width indirectly
 
   return (
     <section className="board-section">
-      <h2 className="text-center mb-4 heading">Board Of Trustees</h2>
+      <h2 className="text-center mb-4 heading section-title">
+        Board Of Trustees
+      </h2>
       <div className="trustee-carousel-container">
         {showNavigation && !isMobile && (
           <button
             className="carousel-control-prev"
             type="button"
             onClick={handlePrev}
+            aria-label="Previous Trustee"
           >
             <span className="carousel-control-prev-icon" aria-hidden="true" />
             <span className="visually-hidden">Previous</span>
@@ -142,7 +179,7 @@ const BoardOfTrusteesSection = () => {
           {BoardOfTrusteesData.map((trustee, index) => (
             <div
               key={index}
-              className={`trustee-item ${isMobile ? "mobile-card" : ""}`}
+              className={`trustee-item ${isMobile ? "mobile-card-item" : ""}`} // Use a distinct class for mobile item if needed for JS targeting, though CSS handles it
             >
               <TrusteeCard trustee={trustee} />
             </div>
@@ -153,6 +190,7 @@ const BoardOfTrusteesSection = () => {
             className="carousel-control-next"
             type="button"
             onClick={handleNext}
+            aria-label="Next Trustee"
           >
             <span className="carousel-control-next-icon" aria-hidden="true" />
             <span className="visually-hidden">Next</span>
@@ -161,7 +199,7 @@ const BoardOfTrusteesSection = () => {
         {isMobile && showNavigation && (
           <div className="mobile-navigation">
             <button
-              className="mobile-prev-btn"
+              className="mobile-nav-btn mobile-prev-btn"
               onClick={() =>
                 setCurrentIndex(
                   (prev) =>
@@ -169,18 +207,20 @@ const BoardOfTrusteesSection = () => {
                     BoardOfTrusteesData.length
                 )
               }
+              aria-label="Previous Trustee"
             >
-              &lt;
+              {"<"}
             </button>
             <button
-              className="mobile-next-btn"
+              className="mobile-nav-btn mobile-next-btn"
               onClick={() =>
                 setCurrentIndex(
                   (prev) => (prev + 1) % BoardOfTrusteesData.length
                 )
               }
+              aria-label="Next Trustee"
             >
-              &gt;
+              {">"}
             </button>
           </div>
         )}

@@ -1,49 +1,78 @@
 /* src/components/BoardOfTrusteesSection.css */
+
 .board-section {
-  padding: 30px 15px;
+  padding: 40px 15px; /* Increased padding slightly */
   text-align: center;
   background-color: #f9f9f9;
+  overflow: hidden; /* To contain carousel elements if they protrude */
+}
+
+.section-title {
+  font-size: 2.2em;
+  color: #333;
+  margin-bottom: 30px; /* Increased margin */
 }
 
 .trustee-carousel-container {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */ /* Overflow is handled by trustee-grid */
   display: flex;
   align-items: center;
+  max-width: 1200px; /* Max width for the carousel content */
+  margin: 0 auto; /* Center the carousel */
 }
 
+/* Carousel Navigation Buttons (Desktop) */
 .carousel-control-prev,
 .carousel-control-next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
+  background-color: rgba(255, 255, 255, 0.7); /* Slight background for better visibility */
   border: none;
+  border-radius: 50%;
+  width: 40px; /* Fixed size */
+  height: 40px; /* Fixed size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 20;
   cursor: pointer;
-  opacity: 0.5;
-  transition: opacity 0.15s ease;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
-  opacity: 0.9;
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
 .carousel-control-prev {
-  left: 5px;
+  left: -20px; /* Position outside the grid slightly, adjust as needed */
 }
 
 .carousel-control-next {
-  right: 5px;
+  right: -20px; /* Position outside the grid slightly, adjust as needed */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 20px; /* Icon size */
+  height: 20px; /* Icon size */
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
 }
 
 .carousel-control-prev-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23bdcb38' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%231e3e33' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3e%3c/svg%3e"); /* Darker icon color */
 }
 
 .carousel-control-next-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23bdcb38' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%231e3e33' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e"); /* Darker icon color */
 }
 
 .visually-hidden {
@@ -58,37 +87,305 @@
   border: 0 !important;
 }
 
+/* Trustees Grid & Items */
 .trustee-grid {
   display: flex;
-  width: 100%;
-  gap: 15px;
-  padding: 15px;
+  gap: 20px; /* Default gap for desktop */
+  padding: 15px; /* Default padding for desktop */
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* For Firefox */
+  transition: scroll-left 0.5s cubic-bezier(0.25, 0.1, 0.25, 1); /* Smoother scroll */
+  width: 100%; /* Ensure grid takes full width of its container */
+}
+
+.trustee-grid::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for WebKit browsers */
 }
 
 .trustee-item {
-  scroll-snap-align: start;
-  flex: 0 0 auto;
+  scroll-snap-align: start; /* Each item is a snap point */
+  flex-shrink: 0; /* Prevent items from shrinking */
+  /* Width will be defined in media queries */
+  display: flex; /* To help child fill height if needed */
 }
 
+/* Trustee Flip Card Styling */
 .trustee-flip-card {
+  background-color: transparent;
+  width: 100%; /* Card fills the trustee-item */
+  height: 100%; /* Card fills the trustee-item */
+  min-height: 380px; /* Minimum height for content consistency */
   perspective: 1000px;
+  display: flex; /* Ensure inner content aligns well */
+  flex-direction: column; /* Stack front/back correctly if height is auto */
+}
+
+.trustee-flip-inner {
+  position: relative;
   width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother flip */
+  transform-style: preserve-3d;
+  border-radius: 12px; /* Rounded corners for the card */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Softer shadow */
 }
 
-/* Ensure one card fits mobile viewport */
-.mobile-card {
-  min-width: 100% !important;
-  max-width: 100% !important;
-  flex: 0 0 100% !important;
+/* This class is added by JS on hover (for non-mobile) */
+.trustee-flip-inner.flipped {
+  transform: rotateY(180deg);
 }
 
-/* Hide desktop nav on mobile */
+.trustee-card-front,
+.trustee-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  border-radius: 12px; /* Match flip-inner */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Increased padding */
+  box-sizing: border-box;
+}
+
+.trustee-card-front {
+  background-color: #ffffff;
+  color: #333;
+}
+
+.trustee-card-front img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px; /* Increased margin */
+  border: 3px solid #1e3e33; /* Added border to image */
+}
+
+.trustee-card-front h5 {
+  font-size: 1.2em; /* Slightly larger */
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #1e3e33;
+}
+
+.trustee-card-front p {
+  font-size: 0.9em;
+  color: #555; /* Darker gray */
+}
+
+.trustee-card-back {
+  background-color: #1e3e33; /* Dark green */
+  color: #f0f0f0; /* Light text color for contrast */
+  transform: rotateY(180deg);
+  overflow-y: auto; /* Allow scrolling for long bios */
+  text-align: left;
+  justify-content: flex-start; /* Align content to top */
+  align-items: flex-start; /* Align content to left */
+}
+
+.trustee-card-back .full-bio-text {
+  font-size: 0.88em; /* Slightly larger bio text */
+  line-height: 1.6; /* Improved readability */
+  color: #bdcb38; /* Original accent color for bio text */
+}
+
+/* Mobile Navigation Buttons */
+.mobile-navigation {
+  display: none; /* Hidden by default, shown in mobile media query */
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Space above buttons */
+}
+
+.mobile-nav-btn {
+  background-color: #1e3e33;
+  color: #bdcb38;
+  border: 1px solid #bdcb38;
+  padding: 10px 18px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 20px; /* Pill shape */
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.mobile-nav-btn:hover,
+.mobile-nav-btn:focus {
+  background-color: #bdcb38;
+  color: #1e3e33;
+  outline: none;
+}
+
+
+/* == Responsive Styles == */
+
+/* Desktop (4 cards) */
+@media (min-width: 993px) {
+  .trustee-item {
+    width: calc(25% - (20px * 3 / 4)); /* 20px is the gap from .trustee-grid */
+    /* approx 25% - 15px */
+  }
+  .trustee-flip-card {
+    min-height: 400px; /* Specific height for desktop cards */
+  }
+}
+
+/* Tablets (2 cards) */
+@media (max-width: 992px) and (min-width: 601px) {
+  .section-title {
+    font-size: 2em;
+    margin-bottom: 25px;
+  }
+  .trustee-grid {
+    gap: 15px; /* Gap for tablet */
+    padding: 10px; /* Padding for tablet */
+  }
+  .trustee-item {
+    width: calc(50% - (15px / 2)); /* 15px is the gap */
+    /* approx 50% - 7.5px */
+  }
+  .trustee-flip-card {
+    min-height: 380px; /* Specific height for tablet cards */
+  }
+  .carousel-control-prev {
+    left: -10px;
+  }
+  .carousel-control-next {
+    right: -10px;
+  }
+  .trustee-card-front img {
+    width: 100px;
+    height: 100px;
+  }
+  .trustee-card-front h5 {
+    font-size: 1.1em;
+  }
+  .trustee-card-front p {
+    font-size: 0.85em;
+  }
+  .trustee-card-back .full-bio-text {
+    font-size: 0.82em;
+    line-height: 1.5;
+  }
+}
+
+/* Mobile Devices (1 card, swipe) */
 @media (max-width: 600px) {
+  .section-title {
+    font-size: 1.7em; /* Adjusted font size */
+    margin-bottom: 20px;
+  }
+
+  .trustee-carousel-container {
+    /* No specific changes needed here unless padding adjustment for buttons */
+  }
+
   .carousel-control-prev,
   .carousel-control-next {
-    display: none;
+    display: none; /* Hide desktop navigation */
+  }
+
+  .trustee-grid {
+    padding: 10px 0; /* Vertical padding, no horizontal for full-width items relative to container */
+    gap: 0; /* No gap between cards for seamless swiping */
+    /* scroll-snap-type: x mandatory; /* Already set globally */
+  }
+
+  .trustee-item {
+    width: 100%; /* Each item takes full width of the grid */
+    /* flex-shrink: 0; /* Already set globally */
+    /* scroll-snap-align: start; /* Already set globally */
+    padding: 0 5px; /* Small horizontal padding for each item to prevent card touching edge */
+    box-sizing: border-box;
+  }
+
+  .trustee-flip-card {
+    width: 100%; /* Card takes full width of the padded .trustee-item */
+    min-width: unset; /* Override global min-width */
+    height: auto; /* Height adjusts to content */
+    min-height: 360px; /* Minimum height for mobile cards */
+    margin: 0 0 15px 0; /* Bottom margin */
+  }
+
+  /* Disable flip animation on mobile, show both sides or just front */
+  .trustee-flip-inner {
+    transform: none !important; /* Disable hover flip effect */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Lighter shadow for mobile */
+    /* If you want to show front and back stacked on mobile: */
+    /* position: static; height: auto; */
+  }
+  
+  /* On mobile, stack front and back or just show front and make back accessible via tap (more JS) */
+  /* Current CSS shows front only, as back is rotated and hidden. */
+  /* To stack them: */
+  .trustee-card-front,
+  .trustee-card-back {
+    position: relative; /* Stack them if .trustee-flip-inner is static */
+    transform: none; /* Remove rotation */
+    /* backface-visibility: visible; */ /* ensure visible */
+  }
+
+  .trustee-card-front {
+    /* Adjust if stacking, e.g., remove absolute positioning */
+     min-height: 200px; /* Ensure front has some min height */
+  }
+
+  .trustee-card-back {
+    margin-top: 10px; /* Space between front and back if stacked */
+    background-color: #fff; /* Change background if stacked for better readability */
+    color: #1e3e33; /* Change text color */
+    border-top: 1px solid #eee;
+    border-radius: 0 0 12px 12px; /* Adjust border radius if stacked */
+    padding: 15px;
+  }
+  .trustee-card-back .full-bio-text {
+     color: #333; /* Better readability on light background */
+     font-size: 0.85em;
+  }
+
+
+  .mobile-navigation {
+    display: flex; /* Show mobile navigation */
+  }
+
+  .trustee-card-front img {
+    width: 90px;
+    height: 90px;
+  }
+  .trustee-card-front h5 {
+    font-size: 1em;
+  }
+  .trustee-card-front p {
+    font-size: 0.8em;
+  }
+}
+
+/* Smaller Mobile Screens */
+@media (max-width: 375px) {
+  .section-title {
+    font-size: 1.5em;
+  }
+  .trustee-flip-card {
+    min-height: 340px;
+  }
+  .trustee-card-front img {
+    width: 80px;
+    height: 80px;
+  }
+  .trustee-card-back .full-bio-text {
+    font-size: 0.8em;
+    line-height: 1.4;
+  }
+  .mobile-nav-btn {
+    padding: 8px 15px;
+    font-size: 1em;
   }
 }
