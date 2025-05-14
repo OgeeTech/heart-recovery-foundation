@@ -1,6 +1,7 @@
 // src/components/BoardOfTrusteesSection.jsx
 import React, { useState, useRef, useEffect } from "react";
 import "./BoardOfTrusteesSection.css";
+import "./bt.css"
 
 const BoardOfTrusteesData = [
   {
@@ -41,27 +42,19 @@ const BoardOfTrusteesData = [
   },
 ];
 
-// Single flip-card component
 const TrusteeCard = ({ trustee }) => {
   const [flipped, setFlipped] = useState(false);
-  // Determine if the current environment is mobile based on window width
-  // This is a common approach but ideally, for full SSR compatibility or more complex scenarios,
-  // this might be handled differently or passed as a prop.
   const isMobileView =
     typeof window !== "undefined" && window.innerWidth <= 600;
 
   return (
     <div
       className="trustee-flip-card"
-      onMouseEnter={() => !isMobileView && setFlipped(true)} // Disable flip on hover for mobile
-      onMouseLeave={() => !isMobileView && setFlipped(false)} // Disable flip on hover for mobile
-      // onClick could be used for mobile flip if desired, but current CSS disables it
+      onMouseEnter={() => setFlipped(true)}
+      onMouseLeave={() => setFlipped(false)}
+      onClick={() => isMobileView && setFlipped((prev) => !prev)}
     >
-      <div
-        className={`trustee-flip-inner ${
-          flipped && !isMobileView ? "flipped" : ""
-        }`}
-      >
+      <div className={`trustee-flip-inner ${flipped ? "flipped" : ""}`}>
         <div className="trustee-card-front">
           <img src={trustee.img} alt={trustee.name} />
           <h5>{trustee.name}</h5>
@@ -75,20 +68,15 @@ const TrusteeCard = ({ trustee }) => {
   );
 };
 
-// Main section component
 const BoardOfTrusteesSection = () => {
   const containerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false); // State for mobile view
+  const [isMobile, setIsMobile] = useState(false);
+  const cardsToShow = 4;
 
-  const cardsToShow = 4; // For desktop view
-
-  // Effect to check and set mobile state on mount and resize
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 600);
-    };
-    checkMobile(); // Initial check
+    const checkMobile = () => setIsMobile(window.innerWidth <= 600);
+    checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
@@ -96,67 +84,46 @@ const BoardOfTrusteesSection = () => {
   const showNavigation =
     BoardOfTrusteesData.length > (isMobile ? 1 : cardsToShow);
 
-  const handleNext = () => {
-    if (containerRef.current) {
-      // Desktop scrolling logic (direct manipulation)
-      const scrollAmount = containerRef.current.offsetWidth / cardsToShow;
-      // Calculate new scrollLeft target
-      const newScrollLeft = Math.min(
-        containerRef.current.scrollLeft + scrollAmount,
-        containerRef.current.scrollWidth - containerRef.current.offsetWidth
-      );
-      containerRef.current.scrollLeft = newScrollLeft;
+  const scrollItemWidth = isMobile
+    ? containerRef.current?.offsetWidth || 0
+    : containerRef.current?.offsetWidth / cardsToShow || 0;
 
-      // Update currentIndex for desktop (optional, if needed for other logic)
-      // This logic might need refinement if desktop also needs precise index tracking
-      // based on scroll position rather than fixed items.
-      // For simplicity, we can also tie desktop index to card visibility.
-      setCurrentIndex((prevIndex) =>
-        Math.min(prevIndex + 1, BoardOfTrusteesData.length - cardsToShow)
-      );
-    }
+  const handleNext = () => {
+    if (!containerRef.current) return;
+    const maxScroll =
+      containerRef.current.scrollWidth - containerRef.current.offsetWidth;
+    const newLeft = Math.min(
+      containerRef.current.scrollLeft + scrollItemWidth,
+      maxScroll
+    );
+    containerRef.current.scrollTo({ left: newLeft, behavior: "smooth" });
+    setCurrentIndex((prev) =>
+      isMobile
+        ? (prev + 1) % BoardOfTrusteesData.length
+        : Math.min(prev + 1, BoardOfTrusteesData.length - cardsToShow)
+    );
   };
 
   const handlePrev = () => {
-    if (containerRef.current) {
-      // Desktop scrolling logic (direct manipulation)
-      const scrollAmount = containerRef.current.offsetWidth / cardsToShow;
-      // Calculate new scrollLeft target
-      const newScrollLeft = Math.max(
-        containerRef.current.scrollLeft - scrollAmount,
-        0
-      );
-      containerRef.current.scrollLeft = newScrollLeft;
-
-      // Update currentIndex for desktop
-      setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
-    }
+    if (!containerRef.current) return;
+    const newLeft = Math.max(
+      containerRef.current.scrollLeft - scrollItemWidth,
+      0
+    );
+    containerRef.current.scrollTo({ left: newLeft, behavior: "smooth" });
+    setCurrentIndex((prev) =>
+      isMobile
+        ? (prev - 1 + BoardOfTrusteesData.length) % BoardOfTrusteesData.length
+        : Math.max(prev - 1, 0)
+    );
   };
 
-  // Auto-scroll for mobile
+  // Auto-scroll mobile
   useEffect(() => {
-    let autoScrollInterval;
-    if (isMobile && BoardOfTrusteesData.length > 1) {
-      autoScrollInterval = setInterval(() => {
-        setCurrentIndex(
-          (prevIndex) => (prevIndex + 1) % BoardOfTrusteesData.length
-        );
-      }, 3000); // Auto-scroll interval: 3 seconds
-    }
-    return () => clearInterval(autoScrollInterval);
-  }, [isMobile, BoardOfTrusteesData.length, currentIndex]); // currentIndex in deps restarts interval on change
-
-  // Scroll effect for mobile when currentIndex changes
-  useEffect(() => {
-    if (isMobile && containerRef.current) {
-      // Ensure the containerRef has its children rendered and width calculated.
-      const itemWidth = containerRef.current.offsetWidth; // This is the width of the scroll container.
-      // Each item is 100% of this on mobile.
-      if (itemWidth > 0) {
-        containerRef.current.scrollLeft = currentIndex * itemWidth;
-      }
-    }
-  }, [isMobile, currentIndex, BoardOfTrusteesData.length]); // Added BoardOfTrusteesData.length as it might affect total scroll width indirectly
+    if (!isMobile) return;
+    const id = setInterval(handleNext, 3000);
+    return () => clearInterval(id);
+  }, [isMobile]);
 
   return (
     <section className="board-section">
@@ -164,65 +131,33 @@ const BoardOfTrusteesSection = () => {
         Board Of Trustees
       </h2>
       <div className="trustee-carousel-container">
-        {showNavigation && !isMobile && (
+        {showNavigation && (
           <button
-            className="carousel-control-prev"
-            type="button"
+            className="carousel-control-prev mobile-responsive"
             onClick={handlePrev}
-            aria-label="Previous Trustee"
+            aria-label="Previous"
           >
             <span className="carousel-control-prev-icon" aria-hidden="true" />
-            <span className="visually-hidden">Previous</span>
           </button>
         )}
         <div className="trustee-grid" ref={containerRef}>
-          {BoardOfTrusteesData.map((trustee, index) => (
+          {BoardOfTrusteesData.map((t, i) => (
             <div
-              key={index}
-              className={`trustee-item ${isMobile ? "mobile-card-item" : ""}`} // Use a distinct class for mobile item if needed for JS targeting, though CSS handles it
+              key={i}
+              className={`trustee-item ${isMobile ? "mobile-card-item" : ""}`}
             >
-              <TrusteeCard trustee={trustee} />
+              <TrusteeCard trustee={t} />
             </div>
           ))}
         </div>
-        {showNavigation && !isMobile && (
+        {showNavigation && (
           <button
-            className="carousel-control-next"
-            type="button"
+            className="carousel-control-next mobile-responsive"
             onClick={handleNext}
-            aria-label="Next Trustee"
+            aria-label="Next"
           >
             <span className="carousel-control-next-icon" aria-hidden="true" />
-            <span className="visually-hidden">Next</span>
           </button>
-        )}
-        {isMobile && showNavigation && (
-          <div className="mobile-navigation">
-            <button
-              className="mobile-nav-btn mobile-prev-btn"
-              onClick={() =>
-                setCurrentIndex(
-                  (prev) =>
-                    (prev - 1 + BoardOfTrusteesData.length) %
-                    BoardOfTrusteesData.length
-                )
-              }
-              aria-label="Previous Trustee"
-            >
-              {"<"}
-            </button>
-            <button
-              className="mobile-nav-btn mobile-next-btn"
-              onClick={() =>
-                setCurrentIndex(
-                  (prev) => (prev + 1) % BoardOfTrusteesData.length
-                )
-              }
-              aria-label="Next Trustee"
-            >
-              {">"}
-            </button>
-          </div>
         )}
       </div>
     </section>
