@@ -99,7 +99,7 @@ const Header = () => {
             <div className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
-                href="#"
+                href="/"
                 data-bs-toggle="dropdown"
               >
                 Who we are

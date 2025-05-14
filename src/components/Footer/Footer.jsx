@@ -120,7 +120,7 @@ const Footer = () => {
           <div className="row">
             <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
               &copy;{" "}
-              <a href="#" className="text-white">
+              <a href="/" className="text-white">
                 Heart Recovery Foundation
               </a>
               , All Rights Reserved.
