@@ -1,7 +1,7 @@
 // src/components/BoardOfTrusteesSection.jsx
 import React, { useState, useRef, useEffect } from "react";
 import "./BoardOfTrusteesSection.css";
-import "./bt.css"
+
 
 const BoardOfTrusteesData = [
   {

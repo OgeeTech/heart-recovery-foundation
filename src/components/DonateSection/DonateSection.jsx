@@ -5,11 +5,13 @@ import "./DonateSection.css";
 const DonateSection = () => {
   return (
     <div className="donation-container">
-     
       <div className="donation-content container">
-        <div className="d-inline-block rounded-pill bg-secondary text-primary py-1 px-3 mb-3 text-center mb-4 heading">
-          Donate Now
-        </div>
+        <h2 className="text-center mb-4 heading">
+          <span className="d-inline-block rounded-pill heading-pill px-4 py-2">
+            Donate Now
+          </span>
+        </h2>
+
         <div className="row">
           {/* Left Column */}
           <div className="col-md-6 mb-4">
@@ -47,7 +49,9 @@ const DonateSection = () => {
                       volunteering their time, or sharing the cause.
                     </p>
                     <div className="center-button">
-                      <Button variant="primary">Click Here To Donate</Button>
+                      <Button variant="primary donate-btn">
+                        Click Here To Donate
+                      </Button>
                     </div>
                   </Card.Body>
                 </Tab>
@@ -66,7 +70,9 @@ const DonateSection = () => {
                       education committees, or outreach programs.
                     </p>
                     <div className="center-button">
-                      <Button variant="primary">Click Here To Donate</Button>
+                      <Button variant="primary donate-btn">
+                        Click Here To Donate
+                      </Button>
                     </div>
                   </Card.Body>
                 </Tab>

@@ -1,6 +1,6 @@
 /* Reusable button styled like .btn-outline-light */
 .btn-1 {
-    border: 1px solid #bdcb38 ;
+    border: 1px solid hsl(66, 59%, 51%) ;
     color: #1e3e33 ;
     background-color: transparent;
     transition: all 0.3s ease;

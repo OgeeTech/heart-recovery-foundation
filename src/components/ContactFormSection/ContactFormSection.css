@@ -6,6 +6,10 @@
   overflow: hidden;       /* ensure children don’t spill out */
 }
 
+.contact-p{
+  color:  hsl(66, 59%, 51%) !important ;
+
+}
 /* Full-width header image */
 .contact .contact-img {
   width: 100%;

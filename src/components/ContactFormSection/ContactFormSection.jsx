@@ -32,7 +32,7 @@ const ContactFormSection = () => {
     <div className="contact py-5 bg-light">
       <div className="container">
         <div className="section-header text-center mb-5">
-          <p className="text-primary">Get In Touch</p>
+          <p className="contact-p">Get In Touch</p>
           <h2>Contact for any query</h2>
         </div>
         <div className="row align-items-center">
@@ -94,7 +94,7 @@ const ContactFormSection = () => {
                   required
                 ></textarea>
               </div>
-              <button type="submit" className="btn btn-primary w-100">
+              <button type="submit" className="btn btn-primary w-100 donate-btn">
                 Send Message
               </button>
             </form>

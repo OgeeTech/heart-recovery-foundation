@@ -1,9 +1,16 @@
+:root {
+  --bs-primary: #1e3e33;   /* Dark green */
+  --secondary: #bdcb38;    /* Light green */
+}
 .donation-container {
   position: relative;
   background-image: url('../../assets/Images/carousel-2.jpg'); /* Replace with your image */
   background-size: cover;
   background-position: center;
-  height: 70vh;
+  height: auto;
+  min-height: 70vh;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   width: 100%;
   color: white;
   display: flex;
@@ -11,6 +18,13 @@
   justify-content: center;
   overflow: hidden;
 }
+.heading-pill {
+  background-color: var(--bs-primary);  /* Dark green background */
+  color: var(--secondary);              /* Light green text */
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
 
 .donation-container::before {
   content: '';
@@ -39,13 +53,13 @@
 }
 
 .nav-tabs-red .nav-link.active {
-  border-bottom: 2px solid red;
-  color: red;
+  border-bottom: 2px solid #bdcb38; ;
+  color: #bdcb38; ;
   font-weight: bold;
 }
 
 .nav-tabs-red .nav-link {
-  color: #fff;
+  color: #bdcb38;
 }
 .help-box {
   background: white;
@@ -62,11 +76,11 @@
 }
 
 .donation-container .nav-tabs .nav-link {
-  color: white;
+  color: #bdcb38;
 }
 
 .donation-container .nav-tabs .nav-link.active {
-  color: red;
+  color: #1e3e33 ;
   font-weight: bold;
   border-bottom: 2px solid red;
 }
@@ -75,4 +89,31 @@
   display: flex;
   justify-content: center;
   margin-top: 1rem;
+}
+
+.donate-btn{
+  background-color: #1e3e33 !important;
+  border: 2px solid transparent !important;
+  color: #bdcb38 !important;
+}
+
+.donate-btn:hover{
+  background-color: transparent !important;
+  border: 2px solid #bdcb38!important;
+  color: #1e3e33 !important;
+}
+
+.donation-content {
+  animation: fadeInUp 1s ease-in;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

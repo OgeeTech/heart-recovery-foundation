@@ -1,22 +1,42 @@
-/* 1) ensure every slide is a positioned container */
-.carousel-item {
+:root {
+  --bs-primary: #1e3e33;   /* Dark green */
+  --secondary: #bdcb38;    /* Light green */
+}
+
+/* Carousel arrows container (the cycle) */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--bs-primary);   /* Background = dark green */
+  border-radius: 50%;
   position: relative;
 }
 
-/* 2) make the caption a full‑slide overlay */
-.carousel-caption {
-  position: absolute;    /* ← added */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: rgba(0, 29, 35, 0.8);
-  z-index: 2;            /* sit above the image */
+/* Customize the arrow using a mask image (Bootstrap uses SVG by default) */
+.carousel-control-prev-icon::after,
+.carousel-control-next-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.8rem;
+  height: 0.8rem;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border: solid var(--secondary);       /* Arrow = light green */
+  border-width: 0 3px 3px 0;
+  display: inline-block;
 }
+
+/* Rotate arrows correctly */
+.carousel-control-prev-icon::after {
+  transform: translate(-50%, -50%) rotate(135deg); /* Point left */
+}
+
+.carousel-control-next-icon::after {
+  transform: translate(-50%, -50%) rotate(-45deg); /* Point right */
+}
+
 
 /* 3) ensure the image sits below the overlay */
 .carousel-item img {
@@ -114,3 +134,4 @@
 /* .next-arrow{
   background-color:red !important;
 } */
+

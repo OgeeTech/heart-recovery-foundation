@@ -17,6 +17,7 @@ import DonateSection from './components/DonateSection/DonateSection';
 import Footer from './components/Footer/Footer';
 import TeamSection from './components/TeamSection/TeamSection';
 import ContactFormSection from './components/ContactFormSection/ContactFormSection';
+import GetInvolveSection from './components/GetInvoveSection/GetInvolveSection';
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -41,6 +42,7 @@ function App() {
           <BoardOfTrusteesSection /> 
           <DonateSection />
           <TeamSection/>
+          <GetInvolveSection/>
           <ContactFormSection/>
           <Footer/>
         </div>
