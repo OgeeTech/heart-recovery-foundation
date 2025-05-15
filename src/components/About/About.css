@@ -1,36 +1,80 @@
-/* Reusable button styled like .btn-outline-light */
+/*----------------------------------------
+  Root Colors (if not already defined)
+-----------------------------------------*/
+:root {
+  --bs-primary: #1e3e33;   /* Dark green */
+  --secondary: #bdcb38;    /* Light green */
+}
+
+/*----------------------------------------
+  Section Border Underline
+-----------------------------------------*/
+.about-border {
+  border-bottom: 5px solid var(--bs-primary) !important;
+}
+
+/*----------------------------------------
+  Reusable Outline Button (.btn-1)
+-----------------------------------------*/
 .btn-1 {
-    border: 1px solid hsl(66, 59%, 51%) ;
-    color: #1e3e33 ;
-    background-color: transparent;
-    transition: all 0.3s ease;
+  border: 1px solid hsl(66, 59%, 51%);
+  color: var(--bs-primary);
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-1 .btn-sm-square {
+  background-color: var(--bs-primary) !important;
+  color: var(--secondary) !important;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-1 .btn-sm-square i {
+  color: var(--secondary) !important;
+}
+
+/* Hover state for outline button */
+.btn-1:hover {
+  background-color: var(--secondary) !important;
+  color: var(--bs-primary) !important;
+}
+
+.btn-1:hover .btn-sm-square {
+  background-color: var(--secondary) !important;
+}
+
+.btn-1:hover .btn-sm-square i {
+  color: var(--bs-primary) !important;
+}
+
+
+.button-group {
+  display: grid;
+  gap: 0.5rem;            /* vertical spacing between stacked buttons */
+  justify-items: center;  /* center buttons when narrower than container */
+  margin-top: 1rem;
+}
+
+.button-group .btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* From small screens upward (>=576px), switch to inline */
+@media (min-width: 576px) {
+  .button-group {
+    display: flex;
+    gap: 1rem;            /* horizontal spacing */
+    justify-content: center;
+    margin-top: 2rem;
   }
-  
-  .btn-1 .btn-sm-square {
-    background-color: #1e3e33 !important;
-    color: #bdcb38 !important;
-    width: 32px;
-    height: 32px;
+  .button-group .btn {
+    width: auto;
   }
-  
-  .btn-1 .btn-sm-square i {
-    color: #bdcb38 !important;
-  }
-  
-  /* Hover styles */
-  .btn-1:hover {
-    background-color: #bdcb38 !important;
-    color: #1e3e33 !important;
-  }
-  
-  .btn-1:hover .btn-sm-square {
-    background-color: #bdcb38  !important;
-  }
-  
-  .btn-1:hover .btn-sm-square i {
-    color: #1e3e33 !important;
-  }
-  
-  .about-border{
-    border-bottom: 5px solid #1e3e33 !important;
-  }
+}

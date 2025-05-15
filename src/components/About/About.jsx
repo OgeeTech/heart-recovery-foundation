@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import "./About.css"; // your existing styles
+import "./About.css"; // includes the .button-group CSS you added
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -14,24 +14,22 @@ const fadeInUp = {
 const slides = [
   {
     title: "Core Values",
-    text: `1. Compassion
- 
- 2. Accessibility
- 
- 3. Excellence
-
- 4. Empowerment
- 
- 5. Collaboration`,
+    items: [
+      "Compassion",
+      "Accessibility",
+      "Excellence",
+      "Empowerment",
+      "Collaboration",
+    ],
   },
   {
     title: "Mission Statement",
     text: `Our Goal is to provide financial aid and holistic support to those with congenital
- heart defect, particularly those arising from childbirth, within Under-privileged
- population in Nigeria and the rest of Africa. Together, we envision a future where
- complete heart recovery, healing, general wellness, and indiscriminate compassion
- are accessible to all, empowering hearts to beat stronger, longer, and healthier. 
-one heartbeat at a time.`,
+heart defect, particularly those arising from childbirth, within under-privileged
+populations in Nigeria and the rest of Africa. Together, we envision a future where
+complete heart recovery, healing, general wellness, and indiscriminate compassion
+are accessible to all, empowering hearts to beat stronger, longer, and healthier
+— one heartbeat at a time.`,
   },
   {
     title: "Vision",
@@ -92,7 +90,7 @@ const About = () => {
             <div className="h-100">
               <h2 className="text-center mb-4 heading">About Us</h2>
 
-              {/* Animated text slide */}
+              {/* Animated slide */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={idx}
@@ -103,37 +101,51 @@ const About = () => {
                   transition={{ duration: 0.5 }}
                 >
                   <h5 className="mb-2">{slides[idx].title}</h5>
-                  <p className="text-dark mb-0">{slides[idx].text}</p>
+
+                  {slides[idx].items ? (
+                    <ul className="list-unstyled mb-0">
+                      {slides[idx].items.map((val) => (
+                        <li key={val} className="d-flex align-items-start mb-2">
+                          <i className="fas fa-check-circle me-2 text-success" />
+                          <span className="text-dark">{val}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-dark mb-0">{slides[idx].text}</p>
+                  )}
                 </motion.div>
               </AnimatePresence>
 
               {/* Buttons */}
-              <motion.a
-                className="btn btn-primary btn-2 py-2 px-3 d-inline-flex align-items-center me-3"
-                href="#"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                Learn More
-                <span className="btn-sm-square rounded-circle ms-2 d-flex align-items-center justify-content-center">
-                  <i className="fa fa-arrow-right" />
-                </span>
-              </motion.a>
+              <div className="button-group">
+                <motion.a
+                  className="btn btn-primary btn-2"
+                  href="#"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  Learn More
+                  <span className="btn-sm-square rounded-circle ms-2 d-flex align-items-center justify-content-center">
+                    <i className="fa fa-arrow-right" />
+                  </span>
+                </motion.a>
 
-              <motion.a
-                href="/contact"
-                className="btn btn-outline-light btn-1 py-2 px-3 d-inline-flex align-items-center"
-                initial={{ x: 20, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 1.1 }}
-              >
-                Contact Us
-                <span className="btn-sm-square rounded-circle ms-2 d-flex align-items-center justify-content-center">
-                  <i className="fa fa-arrow-right" />
-                </span>
-              </motion.a>
+                <motion.a
+                  className="btn btn-outline-light btn-1"
+                  href="/contact"
+                  initial={{ x: 20, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 1.1 }}
+                >
+                  Contact Us
+                  <span className="btn-sm-square rounded-circle ms-2 d-flex align-items-center justify-content-center">
+                    <i className="fa fa-arrow-right" />
+                  </span>
+                </motion.a>
+              </div>
             </div>
           </motion.div>
         </div>
