@@ -2,10 +2,15 @@ import React from "react";
 import "./VolunteerForm.css";
 import Header from "../../layouts/Header/Header";
 import Footer from "../../components/Footer/Footer";
+
 const VolunteerForm = () => {
   return (
     <div className="volunteer-form">
-    <Header/>
+      <Header />
+
+      {/* Add spacing between Header and Form */}
+      <div className="form-spacing"></div>
+
       <div className="volunteer-container">
         <h2 className="volunteer-title">Volunteer Form</h2>
         <form
@@ -25,12 +30,12 @@ const VolunteerForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="professional">Your Professional</label>
+            <label htmlFor="professional">Your Profession</label>
             <input
               type="text"
               id="professional"
               name="professional"
-              placeholder="E.g. Your Profession"
+              placeholder="E.g. Software Developer"
               required
             />
           </div>
@@ -110,7 +115,7 @@ const VolunteerForm = () => {
           </button>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

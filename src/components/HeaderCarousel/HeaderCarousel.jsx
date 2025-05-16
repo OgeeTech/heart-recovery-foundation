@@ -10,7 +10,7 @@ const slides = [
     text: "Aliqu diam amet diam et eos. Clita erat ipsum et lorem sed stet lorem sit clita duo justo erat amet",
   },
   {
-    img: "/img/carousel-2.jpg",
+    img: "/img/contact.jpg",
     title: "Let's Save More Lifes With Our Helping Hand",
     text: "Aliqu diam amet diam et eos. Clita erat ipsum et lorem sed stet lorem sit clita duo justo erat amet",
   },

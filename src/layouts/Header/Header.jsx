@@ -127,9 +127,12 @@ const Header = () => {
                 Get Involved
               </a>
               <div className="dropdown-menu m-0">
-                <a className="dropdown-item" href="/service">
+                {/* <a className="dropdown-item" href="/service">
                   Join Our Volunteer Team
-                </a>
+                </a> */}
+                <Link to="/volunteer" className="dropdown-item">
+                  Join Our Volunteer Team
+                </Link>
                 <a className="dropdown-item" href="/donate">
                   Corporate Sponsors
                 </a>
