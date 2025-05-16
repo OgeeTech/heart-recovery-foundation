@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import logo from "../../assets/Images/logo.png";
+import { Link } from "react-router-dom";
+
 import "./Header.css";
 
 const Header = () => {
@@ -134,9 +136,9 @@ const Header = () => {
                 <a className="dropdown-item" href="/team">
                   Individual Sponsors
                 </a>
-                <a className="dropdown-item" href="/testimonial">
+                <Link to="/patientDetails" className="dropdown-item">
                   Patient Financial Application Form
-                </a>
+                </Link>
               </div>
             </div>
             <a href="/causes" className="nav-item nav-link">

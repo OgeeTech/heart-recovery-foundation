@@ -8,6 +8,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
 import Spinner from './Helpers/Spinner/Spinner';
 import Header from './layouts/Header/Header';
 import HeaderCarousel from './components/HeaderCarousel/HeaderCarousel';
@@ -19,6 +20,7 @@ import GetInvolveSection from './components/GetInvoveSection/GetInvolveSection';
 import ContactFormSection from './components/ContactFormSection/ContactFormSection';
 import Footer from './components/Footer/Footer';
 import VolunteerForm from './pages/volunteerForm/VolunteerForm';
+import PatientDetailsForm from './pages/PatientDetailsForm/PatientDetailsForm';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -53,6 +55,8 @@ function App() {
 
         {/* Volunteer Form Route */}
         <Route path="/volunteer" element={<VolunteerForm />} />
+        <Route path="/patientDetails" element={<PatientDetailsForm />} />
+        
       </Routes>
     </div>
   );
