@@ -1,137 +1,100 @@
 import React from "react";
 import logo from "../../assets/Images/logo.png";
-import "./Footer.css"; // Optional custom styling
+import "./Footer.css";
 
 const Footer = () => {
   return (
-    <div className="container-fluid bg-dark text-white-50 footer mt-5 pt-5">
-      <div className="container py-5">
-        <div className="row g-5">
-          {/* Logo & Description */}
-          <div className="col-lg-3 col-md-6">
-            <div className="d-flex align-items-center mb-4">
+    <div className="footer-container bg-dark text-white-50 pt-4 pb-2">
+      <div className="container">
+        <div className="row g-4">
+          {/* Logo and Short Description */}
+          <div className="col-md-6 col-lg-4">
+            <div className="d-flex align-items-center mb-2">
               <img
                 src={logo}
                 alt="Logo"
-                style={{ width: "40px", height: "40px", marginRight: "10px" }}
+                style={{ width: "35px", height: "35px", marginRight: "8px" }}
               />
-              <h4 className="fw-bold text-primary m-0">
+              <h5 className="fw-bold text-primary m-0">
                 Heart<span className="text-white">Recovery</span>
-              </h4>
+              </h5>
             </div>
-            <p>
-              We are committed to supporting underprivileged individuals through
-              health recovery initiatives and community support.
+            <p className="small mb-2">
+              Supporting health recovery for underprivileged communities.
             </p>
-            <div className="d-flex pt-2">
+            <div className="d-flex">
               <a
-                className="btn btn-square text-white-50 me-1"
+                aria-label="Twitter"
+                className="btn btn-sm btn-square text-white-50 me-1"
                 href="https://x.com/HeartrecoveryF/status/1895495423307260024"
               >
                 <i className="fab fa-twitter"></i>
               </a>
               <a
-                className="btn btn-square text-white-50 me-1"
+                aria-label="Facebook"
+                className="btn btn-sm btn-square text-white-50 me-1"
                 href="https://www.facebook.com/profile.php?id=61573737165012"
               >
                 <i className="fab fa-facebook-f"></i>
               </a>
               <a
-                className="btn btn-square text-white-50 me-1"
+                aria-label="Instagram"
+                className="btn btn-sm btn-square text-white-50 me-1"
                 href="https://www.instagram.com/heartrecoveryfoundation"
               >
                 <i className="fab fa-instagram"></i>
-              </a>
-              <a
-                className="btn btn-square text-white-50"
-                href="https://www.linkedin.com/in/heart-recovery-foundation-764ba5353"
-              >
-                <i className="fab fa-linkedin-in"></i>
               </a>
             </div>
           </div>
 
           {/* Contact Info */}
-          <div className="col-lg-3 col-md-6">
-            <h5 className="text-light mb-4">Contact</h5>
-            <p>
-              <i className="fa fa-map-marker-alt me-3"></i>No.1 Edo Street Eden
-              Plaza Shop5 Jikwoyi Abuja
+          <div className="col-md-6 col-lg-4">
+            <h6 className="text-light mb-2">Contact</h6>
+            <p className="small mb-1">
+              <i className="fa fa-map-marker-alt me-2"></i>No.1 Edo Street,
+              Jikwoyi Abuja
             </p>
-            <p>
-              <i className="fa fa-envelope me-3"></i>
+            <p className="small mb-1">
+              <i className="fa fa-envelope me-2"></i>
               heartrecoveryfoundation@gmail.com
             </p>
-            <p>
-              <i className="fa fa-phone-alt me-3"></i>07026000012
+            <p className="small mb-0">
+              <i className="fa fa-phone-alt me-2"></i>07026000012
             </p>
           </div>
 
           {/* Quick Links */}
-          <div className="col-lg-3 col-md-6">
-            <h5 className="text-light mb-4">Quick Links</h5>
-            <a className="btn btn-link text-white-50" href="/service">
-              About Us
-            </a>
-            <a className="btn btn-link text-white-50" href="/donate">
-              Board of Trustees
-            </a>
-            <a className="btn btn-link text-white-50" href="/team">
-              Our Team
-            </a>
-            <a className="btn btn-link text-white-50" href="/contact">
-              Contact
-            </a>
-            <a className="btn btn-link text-white-50" href="/donate">
-              Support
-            </a>
-          </div>
-
-          {/* Newsletter */}
-          <div className="col-lg-3 col-md-6">
-            <h5 className="text-light mb-4">Newsletter</h5>
-            <p>
-              Subscribe to receive updates, stories, and opportunities to
-              support our mission.
-            </p>
-            <div
-              className="position-relative mx-auto"
-              style={{ maxWidth: "400px" }}
-            >
-              <input
-                className="form-control bg-transparent w-100 py-3 ps-4 pe-5 text-white-50 border-light"
-                type="text"
-                placeholder="Your email"
-              />
-              <button
-                type="button"
-                className="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
-              >
-                Sign Up
-              </button>
-            </div>
+          <div className="col-md-6 col-lg-4">
+            <h6 className="text-light mb-2">Quick Links</h6>
+            <ul className="list-unstyled small">
+              <li>
+                <a className="text-white-50" href="/service">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a className="text-white-50" href="/team">
+                  Our Team
+                </a>
+              </li>
+              <li>
+                <a className="text-white-50" href="/contact">
+                  Contact
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
 
-      {/* Copyright */}
-      <div className="container-fluid border-top border-secondary pt-4">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-              &copy;{" "}
-              <a href="/" className="text-white">
-                Heart Recovery Foundation
-              </a>
-              , All Rights Reserved.
-            </div>
-            <div className="col-md-6 text-center text-md-end">
-              Designed by{" "}
-              <a href="/" className="text-white">
-                DCH
-              </a>
-            </div>
-          </div>
+        <hr className="border-secondary my-3" />
+
+        {/* Copyright */}
+        <div className="text-center small">
+          &copy; {new Date().getFullYear()}{" "}
+          <a href="/" className="text-white">
+            Heart Recovery Foundation
+          </a>
+          . All Rights Reserved.
         </div>
       </div>
     </div>

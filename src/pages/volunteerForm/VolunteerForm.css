@@ -1,0 +1,133 @@
+:root {
+    --bs-primary: #1e3e33;
+    --secondary: #bdcb38;
+  }
+   .volunteer-form{
+    background-color: #162e27;
+    margin: 0 auto;
+   }
+  
+  .volunteer-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 2rem 1rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-top: 5px solid var(--secondary);
+  }
+  
+  .volunteer-title {
+    text-align: center;
+    color: var(--bs-primary);
+    margin-bottom: 2rem;
+    font-size: 1.9rem;
+    font-weight: bold;
+  }
+  
+  .form-group {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 0.5rem;
+    color: var(--bs-primary);
+    font-weight: 500;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group input[type="file"],
+  .form-group textarea {
+    border: 1px solid var(--secondary);
+    padding: 0.6rem;
+    border-radius: 5px;
+    outline: none;
+    transition: border 0.3s;
+  }
+  
+  .form-group input:hover,
+  .form-group textarea:hover {
+    border-color: var(--bs-primary);
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .checkbox-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+    color: var(--bs-primary);
+  }
+  
+  .submit-btn {
+    width: 100%;
+    background-color: var(--bs-primary);
+    color: #fff;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background-color: #162e27;
+  }
+  
+  .form-text {
+    color: gray;
+    font-size: 0.85rem;
+  }
+  
+  @media (max-width: 480px) {
+    .volunteer-title {
+      font-size: 1.5rem;
+    }
+  
+    .submit-btn {
+      font-size: 0.95rem;
+      padding: 0.65rem;
+    }
+  
+    .form-group input,
+    .form-group textarea {
+      font-size: 0.95rem;
+    }
+  }
+  
+  .social-icons-box {
+    border: 2px solid #bdcb38;  /* Your hamburger color */
+    border-radius: 8px;
+    padding: 6px 12px;
+    max-width: 160px;
+    margin-top: 8px;
+  }
+  
+  /* Make sure btn-square is small and compact */
+  .btn-square {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Smaller text on mobile */
+  @media (max-width: 576px) {
+    .footer p,
+    .footer a,
+    .footer small {
+      font-size: 12px;
+    }
+  }
+  

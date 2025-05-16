@@ -1,8 +1,15 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "./GetInvolveSection.css";
 
 const GetInvolveSection = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/volunteer");
+  };
+
   return (
     <div className="get-involve-container">
       <div className="get-involve-content container">
@@ -37,7 +44,11 @@ const GetInvolveSection = () => {
                   events, your time and skills make a difference.
                 </p>
                 <div className="center-button">
-                  <Button variant="primary" className="volunteer-btn">
+                  <Button
+                    variant="primary"
+                    className="volunteer-btn"
+                    onClick={handleClick}
+                  >
                     Become a Volunteer
                   </Button>
                 </div>
