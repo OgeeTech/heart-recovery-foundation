@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import logo from "../../assets/Images/logo.png";
 import { Link } from "react-router-dom";
-
 import "./Header.css";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,12 +17,21 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const changeLanguage = (lang) => {
+    const select = document.querySelector(".goog-te-combo");
+    if (select) {
+      select.value = lang;
+      select.dispatchEvent(new Event("change"));
+    }
+    setShowDropdown(false);
+  };
+
   return (
     <div className="container-fluid fixed-top px-0">
-      {/* Top Bar - Hidden on scroll */}
+      {/* Top Bar */}
       {!scrolled && (
         <motion.div
-          className="top-bar text-white-50 row gx-0 align-items-center d-none d-lg-flex "
+          className="top-bar text-white-50 row gx-0 align-items-center d-none d-lg-flex"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -107,9 +116,9 @@ const Header = () => {
                 Who we are
               </a>
               <div className="dropdown-menu m-0">
-                <a className="dropdown-item" href="/service">
+                <Link to="/about" className="dropdown-item">
                   About Us
-                </a>
+                </Link>
                 <a className="dropdown-item" href="/donate">
                   Board of Trustees
                 </a>
@@ -127,9 +136,6 @@ const Header = () => {
                 Get Involved
               </a>
               <div className="dropdown-menu m-0">
-                {/* <a className="dropdown-item" href="/service">
-                  Join Our Volunteer Team
-                </a> */}
                 <Link to="/volunteer" className="dropdown-item">
                   Join Our Volunteer Team
                 </Link>
@@ -151,6 +157,73 @@ const Header = () => {
               Contact
             </a>
           </div>
+
+          {/* Language Selector */}
+          <div className="language-switcher d-none d-lg-flex align-items-center position-relative me-3">
+            <img
+              src="/flags/gb.png"
+              alt="English"
+              className="lang-flag"
+              onClick={() => {
+                changeLanguage("en");
+              }}
+            />
+            <div
+              onClick={() => setShowDropdown(!showDropdown)}
+              style={{ cursor: "pointer" }}
+              className="ms-2"
+            >
+              🌐
+            </div>
+            {showDropdown && (
+              <div className="flag-dropdown position-absolute bg-white p-2 rounded shadow">
+                <img
+                  src="/flags/fr.png"
+                  alt="French"
+                  className="lang-flag"
+                  onClick={() => changeLanguage("fr")}
+                />
+                <img
+                  src="/flags/ge.png"
+                  alt="German"
+                  className="lang-flag"
+                  onClick={() => changeLanguage("de")}
+                />
+                <img
+                  src="/flags/es.png"
+                  alt="Spanish"
+                  className="lang-flag"
+                  onClick={() => changeLanguage("es")}
+                />
+                <img
+                  src="/flags/it.png"
+                  alt="Italian"
+                  className="lang-flag"
+                  onClick={() => changeLanguage("it")}
+                />
+                <img
+                  src="/flags/ng.png"
+                  alt="igbo"
+                  className="lang-flag"
+                  onClick={() => changeLanguage("it")}
+                />
+                <img
+                  src="/flags/ng.png"
+                  alt="hausa"
+                  className="lang-flag"
+                  onClick={() => changeLanguage("it")}
+                />
+                <img
+                  src="/flags/ng.png"
+                  alt="Youruba"
+                  className="lang-flag"
+                  onClick={() => changeLanguage("it")}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Donate Button */}
           <div className="d-none d-lg-flex ms-2">
             <a
               className="btn btn-outline-light btn-custom py-2 px-3 d-inline-flex align-items-center"

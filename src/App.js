@@ -56,6 +56,7 @@ function App() {
         {/* Volunteer Form Route */}
         <Route path="/volunteer" element={<VolunteerForm />} />
         <Route path="/patientDetails" element={<PatientDetailsForm />} />
+        <Route path="/about" element={<About/>} />
         
       </Routes>
     </div>
