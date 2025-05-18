@@ -13,7 +13,9 @@ root.render(
     <BrowserRouter>       {/* ← wrap App in BrowserRouter */}
       <App />
     </BrowserRouter>
+    
   </React.StrictMode>
+  
 );
 
 reportWebVitals();

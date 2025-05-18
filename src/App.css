@@ -363,3 +363,15 @@ body {
 .footer .copyright a:hover {
     color: var(--primary);
 }
+
+
+  /* App.css or global CSS */
+
+
+  
+  .main {
+    flex: 1;
+    padding-top: 0px; /* or your header height */
+    padding-bottom: 60px; /* optional for spacing above footer */
+  }
+  

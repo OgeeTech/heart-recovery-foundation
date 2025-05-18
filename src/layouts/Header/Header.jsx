@@ -1,35 +1,46 @@
+// src/layouts/Header/Header.js
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/Images/logo.png";
-import { Link } from "react-router-dom";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ translateTo }) => {
   const [scrolled, setScrolled] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
+  // Debugging
+  console.log("PATH:", location.pathname, "isHomePage?", isHomePage);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const changeLanguage = (lang) => {
-    const select = document.querySelector(".goog-te-combo");
-    if (select) {
-      select.value = lang;
-      select.dispatchEvent(new Event("change"));
-    }
-    setShowDropdown(false);
-  };
+ 
+
+  // Build navbar classes: non-home always solid, home toggles transparent ↔ scrolled
+  const navClasses = [
+    "navbar",
+    "navbar-expand-lg",
+    !isHomePage
+      ? "nav-with-bg"
+      : scrolled
+      ? "scrolled-navbar"
+      : "transparent-navbar",
+  ]
+    .filter(Boolean)
+    .join(" ");
+  console.log("navClasses:", navClasses);
+
+
 
   return (
     <div className="container-fluid fixed-top px-0">
-      {/* Top Bar */}
-      {!scrolled && (
+      {/* Top Bar: only on home page before scroll */}
+      {isHomePage && !scrolled && (
         <motion.div
           className="top-bar text-white-50 row gx-0 align-items-center d-none d-lg-flex"
           initial={{ opacity: 0, y: -20 }}
@@ -53,26 +64,34 @@ const Header = () => {
           <div className="col-lg-6 px-5 text-end d-flex align-items-center justify-content-end flex-wrap gap-2">
             <small className="mb-0">Follow us:</small>
             <a
-              className="text-white-50 ms-3"
               href="https://www.facebook.com/profile.php?id=61573737165012"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white-50 ms-3"
             >
               <i className="fab fa-facebook-f" />
             </a>
             <a
-              className="text-white-50 ms-3"
               href="https://x.com/HeartrecoveryF/status/1895495423307260024"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white-50 ms-3"
             >
               <i className="fab fa-twitter" />
             </a>
             <a
-              className="text-white-50 ms-3"
               href="https://www.linkedin.com/in/heart-recovery-foundation-764ba5353"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white-50 ms-3"
             >
               <i className="fab fa-linkedin-in" />
             </a>
             <a
-              className="text-white-50 ms-3"
               href="https://www.instagram.com/heartrecoveryfoundation"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white-50 ms-3"
             >
               <i className="fab fa-instagram" />
             </a>
@@ -82,18 +101,16 @@ const Header = () => {
 
       {/* Navbar */}
       <motion.nav
-        className={`navbar navbar-expand-lg py-lg-0 px-lg-5 ${
-          scrolled ? "scrolled-navbar" : "transparent-navbar"
-        }`}
+        className={navClasses}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <a href="/" className="navbar-brand ms-4 ms-lg-0">
+        <Link to="/" className="navbar-brand ms-4 ms-lg-0">
           <div className="logo-circle">
             <img src={logo} alt="HRF Logo" className="logo-img" />
           </div>
-        </a>
+        </Link>
         <button
           className="navbar-toggler me-4"
           type="button"
@@ -102,138 +119,114 @@ const Header = () => {
         >
           <span className="navbar-toggler-icon" />
         </button>
+
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <div className="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="/" className="nav-item nav-link active">
+            <Link to="/" className="nav-item nav-link active">
               Home
-            </a>
+            </Link>
+
             <div className="nav-item dropdown">
-              <a
+              <span
                 className="nav-link dropdown-toggle"
-                href="/"
+                role="button"
                 data-bs-toggle="dropdown"
               >
                 Who we are
-              </a>
+              </span>
               <div className="dropdown-menu m-0">
                 <Link to="/about" className="dropdown-item">
                   About Us
                 </Link>
-                <a className="dropdown-item" href="/donate">
+                <Link to="/boardOfTrustees" className="dropdown-item">
                   Board of Trustees
-                </a>
-                <a className="dropdown-item" href="/team">
+                </Link>
+                <Link to="/team" className="dropdown-item">
                   Our Team
-                </a>
+                </Link>
               </div>
             </div>
+
             <div className="nav-item dropdown">
-              <a
+              <span
                 className="nav-link dropdown-toggle"
-                href="/"
+                role="button"
                 data-bs-toggle="dropdown"
               >
                 Get Involved
-              </a>
+              </span>
               <div className="dropdown-menu m-0">
                 <Link to="/volunteer" className="dropdown-item">
                   Join Our Volunteer Team
                 </Link>
-                <a className="dropdown-item" href="/donate">
+                <Link to="/corporateSponsors" className="dropdown-item">
                   Corporate Sponsors
-                </a>
-                <a className="dropdown-item" href="/team">
+                </Link>
+                <Link to="/individualSponsors" className="dropdown-item">
                   Individual Sponsors
-                </a>
+                </Link>
                 <Link to="/patientDetails" className="dropdown-item">
                   Patient Financial Application Form
                 </Link>
               </div>
             </div>
-            <a href="/causes" className="nav-item nav-link">
+
+            <Link to="/latestNews" className="nav-item nav-link">
               Latest News
-            </a>
-            <a href="/contact" className="nav-item nav-link">
+            </Link>
+            <Link to="/contact" className="nav-item nav-link">
               Contact
-            </a>
+            </Link>
           </div>
 
           {/* Language Selector */}
-          <div className="language-switcher d-none d-lg-flex align-items-center position-relative me-3">
-            <img
-              src="/flags/gb.png"
-              alt="English"
-              className="lang-flag"
-              onClick={() => {
-                changeLanguage("en");
-              }}
-            />
+          {/* <div className="language-switcher d-none d-lg-flex align-items-center position-relative me-3">
+            {languages.map(({ code, flag }) => (
+              <img
+                key={code}
+                src={`/flags/${flag}.png`}
+                alt={code}
+                className="lang-flag"
+                role="button"
+                tabIndex={0}
+                onClick={() => changeLanguage(code)}
+              />
+            ))}
             <div
-              onClick={() => setShowDropdown(!showDropdown)}
-              style={{ cursor: "pointer" }}
               className="ms-2"
+              style={{ cursor: "pointer" }}
+              onClick={() => setShowDropdown((prev) => !prev)}
             >
               🌐
             </div>
             {showDropdown && (
               <div className="flag-dropdown position-absolute bg-white p-2 rounded shadow">
-                <img
-                  src="/flags/fr.png"
-                  alt="French"
-                  className="lang-flag"
-                  onClick={() => changeLanguage("fr")}
-                />
-                <img
-                  src="/flags/ge.png"
-                  alt="German"
-                  className="lang-flag"
-                  onClick={() => changeLanguage("de")}
-                />
-                <img
-                  src="/flags/es.png"
-                  alt="Spanish"
-                  className="lang-flag"
-                  onClick={() => changeLanguage("es")}
-                />
-                <img
-                  src="/flags/it.png"
-                  alt="Italian"
-                  className="lang-flag"
-                  onClick={() => changeLanguage("it")}
-                />
-                <img
-                  src="/flags/ng.png"
-                  alt="igbo"
-                  className="lang-flag"
-                  onClick={() => changeLanguage("it")}
-                />
-                <img
-                  src="/flags/ng.png"
-                  alt="hausa"
-                  className="lang-flag"
-                  onClick={() => changeLanguage("it")}
-                />
-                <img
-                  src="/flags/ng.png"
-                  alt="Youruba"
-                  className="lang-flag"
-                  onClick={() => changeLanguage("it")}
-                />
+                {languages.map(({ code, flag }) => (
+                  <img
+                    key={code + "-dd"}
+                    src={`/flags/${flag}.png`}
+                    alt={code}
+                    className="lang-flag"
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => changeLanguage(code)}
+                  />
+                ))}
               </div>
             )}
-          </div>
+          </div> */}
 
           {/* Donate Button */}
           <div className="d-none d-lg-flex ms-2">
-            <a
+            <Link
+              to="/donate"
               className="btn btn-outline-light btn-custom py-2 px-3 d-inline-flex align-items-center"
-              href="/donate"
             >
               Donate Now
               <span className="btn-sm-square bg-white text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center arrow-in-btn1">
                 <i className="fa fa-arrow-right" />
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </motion.nav>

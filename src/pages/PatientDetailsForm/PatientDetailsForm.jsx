@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./PatientDetailsForm.css";
-import Header from "../../layouts/Header/Header";
-import Footer from "../../components/Footer/Footer";
 
 const allergiesOptions = [
   "Rheumatic Fever",
@@ -106,7 +104,7 @@ const PatientDetailsForm = () => {
 
   return (
     <>
-    <Header/>
+  
       <form className="patient-form" onSubmit={handleSubmit}>
         <h2>Patient Details Form</h2>
 
@@ -223,7 +221,7 @@ const PatientDetailsForm = () => {
           Send Form
         </button>
       </form>
-      <Footer/>
+   
     </>
   );
 };

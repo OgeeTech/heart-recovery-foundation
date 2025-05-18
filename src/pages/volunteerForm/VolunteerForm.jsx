@@ -1,12 +1,10 @@
 import React from "react";
 import "./VolunteerForm.css";
-import Header from "../../layouts/Header/Header";
-import Footer from "../../components/Footer/Footer";
+
 
 const VolunteerForm = () => {
   return (
     <div className="volunteer-form">
-      <Header />
 
       {/* Add spacing between Header and Form */}
       <div className="form-spacing"></div>
@@ -115,7 +113,7 @@ const VolunteerForm = () => {
           </button>
         </form>
       </div>
-      <Footer />
+  
     </div>
   );
 };
