@@ -20,6 +20,7 @@ import ContactFormSection from './components/ContactFormSection/ContactFormSecti
 import Footer from './components/Footer/Footer';
 import VolunteerForm from './pages/volunteerForm/VolunteerForm';
 import PatientDetailsForm from './pages/PatientDetailsForm/PatientDetailsForm';
+import LatestNews from './components/LatestNews/LatestNews';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -69,9 +70,10 @@ function App() {
           <Route path="/boardOfTrustees" element={<BoardOfTrusteesSection />} />
           <Route path="/donate" element={<DonateSection />} />
           <Route path="/team" element={<TeamSection />} />
+    
           <Route path="/getInvolved" element={<GetInvolveSection />} />
           <Route path="/contact" element={<ContactFormSection />} />
-          <Route path="/latestNews" element={<GetInvolveSection />} />
+          <Route path="/latestNews" element={<LatestNews/>} />
           <Route path="/corporateSponsors" element={<GetInvolveSection />} />
           <Route path="/individualSponsors" element={<GetInvolveSection />} />
           <Route path="/patientFinancialApplicationForm" element={<PatientDetailsForm />} />
