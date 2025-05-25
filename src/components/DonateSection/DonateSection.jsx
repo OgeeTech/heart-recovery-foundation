@@ -1,8 +1,11 @@
 import React from "react";
 import { Tab, Tabs, Card, Button } from "react-bootstrap";
 import "./DonateSection.css";
+import { useNavigate } from "react-router-dom";
 
 const DonateSection = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="donation-container">
       <div className="donation-content container">
@@ -49,7 +52,12 @@ const DonateSection = () => {
                       volunteering their time, or sharing the cause.
                     </p>
                     <div className="center-button">
-                      <Button variant="primary donate-btn">
+                      <Button
+                        variant="primary donate-btn"
+                        onClick={() => {
+                          navigate("/donate-now");
+                        }}
+                      >
                         Click Here To Donate
                       </Button>
                     </div>
@@ -70,7 +78,12 @@ const DonateSection = () => {
                       education committees, or outreach programs.
                     </p>
                     <div className="center-button">
-                      <Button variant="primary donate-btn">
+                      <Button
+                        variant="primary donate-btn"
+                        onClick={() => {
+                          navigate("/donate-now");
+                        }}
+                      >
                         Click Here To Donate
                       </Button>
                     </div>

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import emailjs from "emailjs-com";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const ContactFormSection = () => {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    subject: "",
+    title: "",
     message: "",
   });
 
@@ -20,11 +21,24 @@ const ContactFormSection = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Basic validation (you can enhance this or use a form library)
-    if (form.name && form.email && form.subject && form.message) {
-      console.log("Form submitted:", form);
-      setSubmitted(true);
-      setForm({ name: "", email: "", subject: "", message: "" });
+    if (form.name && form.email && form.title && form.message) {
+      emailjs
+        .send(
+          process.env.REACT_APP_EMAILJS_SERVICE_ID,
+          process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+          form,
+          process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+        )
+        .then(
+          (response) => {
+            console.log("Email sent!", response.status, response.text);
+            setSubmitted(true);
+            setForm({ name: "", email: "", title: "", message: "" });
+          },
+          (err) => {
+            console.error("Failed to send email:", err);
+          }
+        );
     }
   };
 
@@ -76,9 +90,9 @@ const ContactFormSection = () => {
                 <input
                   type="text"
                   className="form-control"
-                  id="subject"
+                  id="title"
                   placeholder="Subject"
-                  value={form.subject}
+                  value={form.title}
                   onChange={handleChange}
                   required
                 />
@@ -94,7 +108,10 @@ const ContactFormSection = () => {
                   required
                 ></textarea>
               </div>
-              <button type="submit" className="btn btn-primary w-100 donate-btn">
+              <button
+                type="submit"
+                className="btn btn-primary w-100 donate-btn"
+              >
                 Send Message
               </button>
             </form>
