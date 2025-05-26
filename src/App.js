@@ -57,11 +57,11 @@ function App() {
             path="/"
             element={
               <>
-                <HeaderCarousel />
+               <HeaderCarousel /> 
                 <About />
-                <BoardOfTrusteesSection />
+                <BoardOfTrusteesSection /> 
                 <DonateSection />
-                <TeamSection />
+                 <TeamSection /> 
                 <GetInvolveSection />
                 <ContactFormSection />
               </>

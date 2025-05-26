@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import "./BoardOfTrusteesSection.css";
 
 const BoardOfTrusteesData = [
@@ -86,7 +86,9 @@ const BoardOfTrusteesSection = () => {
     ? containerRef.current?.offsetWidth || 0
     : containerRef.current?.offsetWidth / cardsToShow || 0;
 
-  const handleNext = () => {
+  // removed misplaced import
+
+  const handleNext = useCallback(() => {
     if (!containerRef.current) return;
     const maxScroll =
       containerRef.current.scrollWidth - containerRef.current.offsetWidth;
@@ -95,16 +97,16 @@ const BoardOfTrusteesSection = () => {
       ? 0
       : containerRef.current.scrollLeft + scrollItemWidth;
     containerRef.current.scrollTo({ left: newLeft, behavior: "smooth" });
-  };
+  }, [scrollItemWidth]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     if (!containerRef.current) return;
     const newLeft = Math.max(
       containerRef.current.scrollLeft - scrollItemWidth,
       0
     );
     containerRef.current.scrollTo({ left: newLeft, behavior: "smooth" });
-  };
+  }, [scrollItemWidth]);
 
   // ✅ Auto-scroll on all screen sizes
   useEffect(() => {

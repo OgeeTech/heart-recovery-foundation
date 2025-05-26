@@ -1,18 +1,26 @@
+// img: "/img/slide11.jpg",
+//     title: "Heart Recovery Foundation",
+//     text: "One Heart Beat, At A TIme",
+//   },
+//   {
+//     img: "/img/contact.jpg",
+//     title: "Let's Save More Lifes With Our Helping Hand",
+//     text: "Restoring hope, one heart at a time",
+
 import React from "react";
 import { motion } from "framer-motion";
 import "./HeaderCarousel.css"; // Optional if you're styling separately or using Bootstrap
 
 const slides = [
   {
-    // img: "/img/carousel-1.jpg",
     img: "/img/slide11.jpg",
     title: "Heart Recovery Foundation",
-    text: "One Heart Beat, At A TIme",
+    text: "Aliqu diam amet diam et eos. Clita erat ipsum et lorem sed stet lorem sit clita duo justo erat amet",
   },
   {
     img: "/img/contact.jpg",
     title: "Let's Save More Lifes With Our Helping Hand",
-    text: "Restoring hope, one heart at a time",
+    text: "Aliqu diam amet diam et eos. Clita erat ipsum et lorem sed stet lorem sit clita duo justo erat amet",
   },
 ];
 
@@ -23,8 +31,6 @@ const HeaderCarousel = () => {
         id="header-carousel"
         className="carousel slide"
         data-bs-ride="carousel"
-        data-bs-interval="3000"
-        data-bs-pause="false"
       >
         <div className="carousel-inner">
           {slides.map((slide, idx) => (
@@ -54,8 +60,8 @@ const HeaderCarousel = () => {
                         {slide.text}
                       </motion.p>
                       <motion.a
-                        className="btn btn-primary btn-2 py-2 px-3 d-inline-flex align-items-center"
                         href="#"
+                        className="btn btn-primary btn-2 py-2 px-3 d-inline-flex align-items-center"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
@@ -74,13 +80,13 @@ const HeaderCarousel = () => {
         </div>
 
         <button
-          className="carousel-control-prev "
+          className="carousel-control-prev"
           type="button"
           data-bs-target="#header-carousel"
           data-bs-slide="prev"
         >
-          <span className="carousel-control-prev-icon " aria-hidden="true" />
-          <span className="visually-hidden ">Previous</span>
+          <span className="carousel-control-prev-icon" aria-hidden="true" />
+          <span className="visually-hidden">Previous</span>
         </button>
 
         <button
