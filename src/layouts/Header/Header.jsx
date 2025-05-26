@@ -156,7 +156,10 @@ const Header = ({ translateTo }) => {
                 Get Involved
               </span>
               <div className="dropdown-menu m-0">
-                <Link to="/volunteer" className="dropdown-item">
+                <Link
+                  to="https://docs.google.com/forms/d/e/1FAIpQLScDe7T8kWLmrQttAXI49k7bnKg0NML3PWVCZhLa9DAd0RWxvg/viewform?usp=header"
+                  className="dropdown-item"
+                >
                   Join Our Volunteer Team
                 </Link>
                 <Link to="/corporateSponsors" className="dropdown-item">
@@ -165,7 +168,10 @@ const Header = ({ translateTo }) => {
                 <Link to="/individualSponsors" className="dropdown-item">
                   Individual Sponsors
                 </Link>
-                <Link to="/patientDetails" className="dropdown-item">
+                <Link
+                  to="https://forms.gle/17NfuEAc9tvCNYDP9"
+                  className="dropdown-item"
+                >
                   Patient Financial Application Form
                 </Link>
               </div>
@@ -219,7 +225,7 @@ const Header = ({ translateTo }) => {
           {/* Donate Button */}
           <div className="d-none d-lg-flex ms-2">
             <Link
-              to="/donate"
+              to="/donate-now"
               className="btn btn-outline-light btn-custom py-2 px-3 d-inline-flex align-items-center"
             >
               Donate Now

@@ -1,0 +1,32 @@
+:root {
+    --bs-primary: #1e3e33;
+    --bs-secondary: #bdcb38;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #feffff !important;
+  }
+  
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  .card-body{
+    color: white !important;
+  }
+
+  .text-header{
+    color: #1e3e33;
+  }
+
+  .payment-btn{
+    color: #bdcb38;
+    background-color: #1e3e33;
+  }
+
+  .payment-btn:hover{
+    color: #1e3e33;
+    background-color: #bdcb38;
+  }

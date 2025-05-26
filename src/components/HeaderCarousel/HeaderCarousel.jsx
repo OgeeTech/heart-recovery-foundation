@@ -7,12 +7,12 @@ const slides = [
     // img: "/img/carousel-1.jpg",
     img: "/img/slide11.jpg",
     title: "Heart Recovery Foundation",
-    text: "Aliqu diam amet diam et eos. Clita erat ipsum et lorem sed stet lorem sit clita duo justo erat amet",
+    text: "One Heart Beat, At A TIme",
   },
   {
     img: "/img/contact.jpg",
     title: "Let's Save More Lifes With Our Helping Hand",
-    text: "Aliqu diam amet diam et eos. Clita erat ipsum et lorem sed stet lorem sit clita duo justo erat amet",
+    text: "Restoring hope, one heart at a time",
   },
 ];
 
@@ -23,6 +23,8 @@ const HeaderCarousel = () => {
         id="header-carousel"
         className="carousel slide"
         data-bs-ride="carousel"
+        data-bs-interval="3000"
+        data-bs-pause="false"
       >
         <div className="carousel-inner">
           {slides.map((slide, idx) => (

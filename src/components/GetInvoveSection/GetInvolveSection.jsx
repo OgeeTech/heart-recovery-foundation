@@ -1,13 +1,15 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+
 import "./GetInvolveSection.css";
 
 const GetInvolveSection = () => {
-  const navigate = useNavigate();
+
 
   const handleClick = () => {
-    navigate("/volunteer");
+    window.open(
+      "https://docs.google.com/forms/d/e/1FAIpQLScDe7T8kWLmrQttAXI49k7bnKg0NML3PWVCZhLa9DAd0RWxvg/viewform"
+    );
   };
 
   return (
@@ -39,7 +41,7 @@ const GetInvolveSection = () => {
           <div className="col-md-6">
             <Card>
               <Card.Body>
-                <p>
+                <p className="text-dark">
                   Whether you can give a few hours a week or help with specific
                   events, your time and skills make a difference.
                 </p>

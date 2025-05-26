@@ -47,7 +47,7 @@ const DonateSection = () => {
                   }
                 >
                   <Card.Body>
-                    <p>
+                    <p className="text-dark">
                       Corporations can help by contributing what they can,
                       volunteering their time, or sharing the cause.
                     </p>
@@ -73,7 +73,7 @@ const DonateSection = () => {
                   }
                 >
                   <Card.Body>
-                    <p>
+                    <p className="text-dark">
                       Individuals can help with a donation, fundraising,
                       education committees, or outreach programs.
                     </p>

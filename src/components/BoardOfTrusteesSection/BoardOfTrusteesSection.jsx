@@ -1,7 +1,5 @@
-// src/components/BoardOfTrusteesSection.jsx
 import React, { useState, useRef, useEffect } from "react";
 import "./BoardOfTrusteesSection.css";
-
 
 const BoardOfTrusteesData = [
   {
@@ -29,16 +27,16 @@ const BoardOfTrusteesData = [
     text: `Adeleke A. Adeoye is a Public Health Physician with a decade in both private and public sectors. He earned a NYSC Meritorious Award and is currently undertaking doctoral training in South Australia.`,
   },
   {
-    img: "/img/team-1.jpg", // Assuming this is a placeholder, update if needed
+    img: "/img/board-5.jpg",
     name: "Mr. Stephen Nwika Yeeh",
     profession: "Member, Board of Trustees",
     text: `Stephen Nwika Yeeh is a social work and community development expert with advanced public administration training. He is an active member of the Nigeria Association of Social Workers.`,
   },
   {
-    img: "/img/team-2.jpg", // Assuming this is a placeholder, update if needed
-    name: "Mrs. Aisha Maina",
-    profession: "Secretary",
-    text: `Aisha Maina is an experienced administrator with a background in organizational management and public relations. She ensures the smooth operation of the Board's activities.`,
+    img: "/img/founder.jpg",
+    name: "Gilbert Kiaka",
+    profession: "Founder, Heart Recovery Foundation",
+    text: `Gilbert Kiaka is the founder of Heart Recovery Foundation, a non-profit organization dedicated to improving healthcare access and quality in Nigeria. With a background in public health and community service, he has been instrumental in various health initiatives across the country.`,
   },
 ];
 
@@ -72,6 +70,7 @@ const BoardOfTrusteesSection = () => {
   const containerRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const cardsToShow = 4;
+  const intervalRef = useRef(null);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 600);
@@ -91,10 +90,10 @@ const BoardOfTrusteesSection = () => {
     if (!containerRef.current) return;
     const maxScroll =
       containerRef.current.scrollWidth - containerRef.current.offsetWidth;
-    const newLeft = Math.min(
-      containerRef.current.scrollLeft + scrollItemWidth,
-      maxScroll
-    );
+    const atEnd = containerRef.current.scrollLeft >= maxScroll - 5;
+    const newLeft = atEnd
+      ? 0
+      : containerRef.current.scrollLeft + scrollItemWidth;
     containerRef.current.scrollTo({ left: newLeft, behavior: "smooth" });
   };
 
@@ -107,23 +106,16 @@ const BoardOfTrusteesSection = () => {
     containerRef.current.scrollTo({ left: newLeft, behavior: "smooth" });
   };
 
-  // Auto-scroll for mobile view
+  // ✅ Auto-scroll on all screen sizes
   useEffect(() => {
-    if (!isMobile) return;
+    if (!containerRef.current) return;
 
-    const intervalId = setInterval(() => {
-      if (!containerRef.current) return;
-      const maxScroll =
-        containerRef.current.scrollWidth - containerRef.current.offsetWidth;
-      const newLeft = Math.min(
-        containerRef.current.scrollLeft + scrollItemWidth,
-        maxScroll
-      );
-      containerRef.current.scrollTo({ left: newLeft, behavior: "smooth" });
+    intervalRef.current = setInterval(() => {
+      handleNext();
     }, 3000);
 
-    return () => clearInterval(intervalId);
-  }, [isMobile, scrollItemWidth]);
+    return () => clearInterval(intervalRef.current);
+  }, [handleNext, scrollItemWidth]);
 
   return (
     <section className="board-section">
@@ -140,7 +132,16 @@ const BoardOfTrusteesSection = () => {
             <span className="carousel-control-prev-icon" aria-hidden="true" />
           </button>
         )}
-        <div className="trustee-grid" ref={containerRef}>
+        <div
+          className="trustee-grid"
+          ref={containerRef}
+          onMouseEnter={() => clearInterval(intervalRef.current)}
+          onMouseLeave={() => {
+            intervalRef.current = setInterval(() => {
+              handleNext();
+            }, 3000);
+          }}
+        >
           {BoardOfTrusteesData.map((t, i) => (
             <div
               key={i}
