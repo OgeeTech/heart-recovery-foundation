@@ -180,6 +180,9 @@ const Header = ({ translateTo }) => {
             <Link to="/latestNews" className="nav-item nav-link">
               Latest News
             </Link>
+            <Link to="/Gallery" className="nav-item nav-link">
+              Gallery
+            </Link>
             <Link to="/contact" className="nav-item nav-link">
               Contact
             </Link>
