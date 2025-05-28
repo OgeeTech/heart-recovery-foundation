@@ -6,7 +6,7 @@ import { Autoplay } from "swiper/modules";
 import "./TeamSection.css";
 
 const teamMembers = [
-  { img: "/img/founder.jpg", name: "Gilbert Kiaka", position: "Founder" },
+
   { img: "/img/officerblessing.jpg", name: "Blessing Moses", position: "Program Officer" },
   { img: "/img/officer2.jpg", name: "Bala David", position: "ICT Technician" },
   { img: "/img/officeromolade.jpg", name: "Olude Omolade Christiana", position: "Information officer" },

@@ -25,10 +25,15 @@ const DonateSection = () => {
                 </h5>
                 <hr className="short-line" />
                 <p>
-                  With absent or limited health insurance coverage across most
-                  of SSA, access to OHS is therefore very restricted as most
-                  patients are unable to pay out of pocket for these expensive
-                  procedures ranging on average from $8000 to $10000.00.
+                  Heart procedures typically range between $10,000
+                  and $12,000, forcing countless individuals to forgo care and,
+                  tragically, lose their lives due to financial constraints.
+                  While some heart foundations offer assistance, their efforts
+                  fall short given the overwhelming number of patients in
+                  Nigeria and the limited funding available. Heart disease
+                  remains one of the leading causes of death globally, and
+                  greater support is urgently needed to help underprivileged
+                  individuals access life-saving treatment.
                 </p>
               </div>
             </div>

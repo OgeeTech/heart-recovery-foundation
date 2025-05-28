@@ -3,6 +3,11 @@
   --secondary: #bdcb38;    /* Light green */
 }
 
+/* .header-container{
+  /* position: relative; */
+  /* width: 100%; */
+  /* overflow: hidden;  */
+
 /* Carousel arrows container (the cycle) */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {

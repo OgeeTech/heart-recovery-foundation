@@ -135,7 +135,7 @@ const Header = ({ translateTo }) => {
                 Who we are
               </span>
               <div className="dropdown-menu m-0">
-                <Link to="/about" className="dropdown-item">
+                <Link to="/about-details" className="dropdown-item">
                   About Us
                 </Link>
                 <Link to="/boardOfTrustees" className="dropdown-item">

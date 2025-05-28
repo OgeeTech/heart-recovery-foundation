@@ -18,7 +18,7 @@ const slides = [
 
 const HeaderCarousel = () => {
   return (
-    <div className="container-fluid p-0 mb-5">
+    <div className="container-fluid p-0 mb-5 header-container">
       <div
         id="header-carousel"
         className="carousel slide"

@@ -1,0 +1,90 @@
+/* src/pages/About/AboutDetails.css */
+
+/* --- Color & Font Variables --- */
+:root {
+    --primary-dark-green: #1e3e33;
+    --accent-lime-green: #bdcb38;
+    --text-primary: #343a40;
+    --text-secondary: #6c757d;
+    --background-light: #f8f9fa;
+    --white-color: #ffffff;
+  }
+  
+  /* --- Global Container Style --- */
+  .about-details-container {
+    background-color: var(--background-light);
+    color: var(--text-primary);
+  }
+  
+  /* --- Founder's Story Section --- */
+  .founder-story .card {
+    background-color: var(--white-color);
+    border-radius: 1rem; /* Softer rounded corners */
+  }
+  
+  .founder-story h2 {
+    color: var(--primary-dark-green);
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+  
+  .founder-story .lead {
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+  
+  .founder-story .founder-signature {
+    display: block;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-dark-green);
+    font-style: italic;
+  }
+  
+  .founder-story img {
+    border-radius: 0.75rem;
+  }
+  
+  /* --- Section Heading Style --- */
+  .section-heading {
+    color: var(--primary-dark-green);
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* Underline effect for headings */
+  .section-heading::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 4px;
+    background-color: var(--accent-lime-green);
+    border-radius: 2px;
+  }
+  
+  /* --- Image Gallery Section --- */
+  .image-gallery-card {
+    background-color: transparent; /* Make card background invisible */
+    border: none;
+    border-radius: 0.75rem;
+    overflow: hidden; /* Ensures image corners are rounded */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .image-gallery-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(30, 62, 51, 0.15);
+  }
+  
+  /* This is the key to making the card fit the image */
+  .gallery-image {
+    width: 100%;
+    height: auto; /* Let height be determined by aspect ratio */
+    display: block; /* Remove any extra space below the image */
+    object-fit: cover; /* Ensures image covers the area well */
+  }

@@ -24,6 +24,7 @@ import LatestNews from "./components/LatestNews/LatestNews";
 import DonatePage from "./components/DonatePage/DonatePage";
 import { ToastContainer } from "react-toastify";
 import GallerySection from "./components/Gallerysection/GallerySection";
+import AboutDetails from "./pages/AboutDetails/AboutDetails";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -85,6 +86,7 @@ function App() {
             element={<PatientDetailsForm />}
           />
           <Route path="/Gallery" element={<GallerySection/>}/>
+          <Route path="/about-details" element={<AboutDetails/>} />
           <Route path="/donate-now" element={<DonatePage />} />
         </Routes>
       </div>

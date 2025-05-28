@@ -52,7 +52,7 @@ const ContactFormSection = () => {
         <div className="row align-items-center">
           <div className="col-md-6 mb-4 mb-md-0">
             <img
-              src="img/contact.jpg"
+              src="img/help1.jpg"
               alt="Contact"
               className="img-fluid rounded"
             />

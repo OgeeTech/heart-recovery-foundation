@@ -71,7 +71,7 @@ const About = () => {
               />
               <img
                 className="position-absolute top-0 end-0 bg-white ps-2 pb-2"
-                src="img/about-2.jpg"
+                src="img/help.jpg"
                 alt=""
                 style={{ width: 200, height: 200 }}
               />
