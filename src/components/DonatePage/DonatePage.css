@@ -1,182 +1,52 @@
-/* src/pages/Donate/DonatePage.module.css */
-
-/* --- Variable Definitions (unchanged) --- */
-:root {
-  --primary-dark-green: #1e3e33;
-  --accent-lime-green: #bdcb38;
-  --background-light: #f7f9fc;
-  --text-primary: #212529;
-  --text-secondary: #6c757d;
-  --white-color: #ffffff;
-  --border-color: #e9ecef;
-  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  --box-shadow-hover: 0 8px 24px rgba(30, 62, 51, 0.12);
-  --border-radius: 0.75rem;
+body {
+  background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+  min-height: 100vh;
 }
 
-/* --- Main Section & Header (minor tweaks for more space) --- */
-.donateSection {
-  background-color: var(--background-light);
-  padding: 6rem 0; /* More vertical padding */
+.custom-toast {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  border-radius: 8px;
+  padding: 16px;
 }
 
-.header {
-  text-align: center;
-  margin-bottom: 5rem;
+.Toastify__toast--success {
+  background-color: #198754;
 }
 
-.title {
-  color: var(--primary-dark-green);
-  font-weight: 700;
-  letter-spacing: -1px;
+.Toastify__toast--error {
+  background-color: #dc3545;
 }
 
-.titleUnderline {
-  height: 4px;
-  width: 70px;
-  margin: 1rem auto 0;
-  background-color: var(--accent-lime-green);
-  border-radius: 2px;
+.Toastify__toast--warning {
+  background-color: #ffc107;
 }
 
-.subtitle {
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 1.5rem auto 0;
-  font-size: 1.1rem;
-  line-height: 1.7;
-}
-
-/* --- Main Layout Grid --- */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: flex-start; /* Align items to the top */
-  gap: 2.5rem;
-}
-
-@media (min-width: 992px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* --- NEW: Payment Method Card Styles --- */
-.paymentMethodCard {
-  background: var(--white-color);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+.payment-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden; /* Hide overflowing elements */
 }
 
-.paymentMethodCard:hover {
+.payment-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--box-shadow-hover);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.cardHeader {
+.btn-paystack {
+  background-color: #198754;
+  border-color: #198754;
+}
+
+.btn-paystack:hover {
+  background-color: #157347;
+  border-color: #146c43;
+}
+
+.btn-paystack:disabled {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.donate-section {
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.cardIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #f0f3de; /* Lighter lime */
-  color: var(--primary-dark-green);
-  margin-right: 1rem;
-}
-
-.cardTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--primary-dark-green);
-  margin-bottom: 0;
-}
-
-.cardBody {
-  padding: 1.5rem;
-}
-
-.detailRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  background-color: var(--background-light);
-  border-radius: 0.5rem;
-}
-
-.detailRow:last-child {
-  margin-bottom: 0;
-}
-
-.detailRow span {
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-
-.detailRow code {
-  font-weight: 600;
-  color: var(--text-primary);
-  word-break: break-all;
-}
-
-/* --- NEW: Copy Button --- */
-.copyButton {
-  background: none;
-  border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  font-weight: 500;
-  color: var(--text-secondary);
-  transition: background-color 0.2s, color 0.2s;
-}
-
-.copyButton:hover {
-  background-color: var(--accent-lime-green);
-  color: var(--primary-dark-green);
-  border-color: var(--accent-lime-green);
-}
-
-/* --- Paystack Form Card (Right Column) --- */
-.paymentFormCard {
-  background-color: var(--white-color);
-  border-radius: var(--border-radius);
-  box-shadow: 0 8px 32px rgba(30, 62, 51, 0.1);
-  padding: 2.5rem;
-  position: sticky; /* Makes the form stick on scroll */
-  top: 2rem;
-}
-
-
-
-.thankYouMessage {
-  text-align: center;
-  padding: 2rem;
-  border: 2px solid var(--accent-lime-green);
-  border-radius: var(--border-radius);
-  background-color: #faffd8;
-}
-
-.thankYouMessage h3 {
-  color: var(--primary-dark-green);
-  margin-bottom: 0.5rem;
-}
-
-.thankYouMessage p {
-  color: var(--text-secondary);
-  margin-bottom: 0;
 }
