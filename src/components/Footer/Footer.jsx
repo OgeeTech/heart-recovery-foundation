@@ -44,6 +44,24 @@ const Footer = () => {
               >
                 <i className="fab fa-instagram"></i>
               </a>
+              <a
+                aria-label="LinkedIn"
+                className="btn btn-sm btn-square text-white-50 me-1"
+                href="https://www.linkedin.com/in/heart-recovery-foundation-764ba5353"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                aria-label="YouTube"
+                className="btn btn-sm btn-square text-white-50 me-1"
+                href="https://www.youtube.com/@heartrecoveryfoundation"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-youtube"></i>
+              </a>
             </div>
           </div>
 

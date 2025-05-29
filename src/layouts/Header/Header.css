@@ -140,3 +140,32 @@ body > .skiptranslate,
 body {
   top: 0 !important;
 }
+
+
+/* Mobile donate button (d-lg-none) */
+.mobile-btn{
+  background: #1e3e33 !important;
+
+  color: #bdcb38;
+  font-size: 14px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-btn:hover {
+  background-color: #bdcb38 !important; /* Darker shade on hover */
+  color: #1e3e33 !important; /* Text color on hover */
+  border: 2px solid #1e3e33 !important; /* Border color on hover */
+}
+
+.arrow-in-btn1 {
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+}

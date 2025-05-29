@@ -180,9 +180,20 @@ const Header = ({ translateTo }) => {
             <Link to="/latestNews" className="nav-item nav-link">
               Latest News
             </Link>
-            
+
             <Link to="/contact" className="nav-item nav-link">
               Contact
+            </Link>
+
+            {/* Mobile Only Donate Button */}
+            <Link
+              to="/donate-now"
+              className="btn btn-outline-light btn-custom py-2 px-3 d-lg-none mt-3 mobile-btn"
+            >
+              Donate Now
+              <span className="btn-sm-square bg-white text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center arrow-in-btn1">
+                <i className="fa fa-arrow-right" />
+              </span>
             </Link>
           </div>
 
@@ -227,7 +238,7 @@ const Header = ({ translateTo }) => {
           <div className="d-none d-lg-flex ms-2">
             <Link
               to="/donate-now"
-              className="btn btn-outline-light btn-custom py-2 px-3 d-inline-flex align-items-center"
+              className="btn btn-outline-light btn-custom py-2 px-3 d-inline-flex align-items-center "
             >
               Donate Now
               <span className="btn-sm-square bg-white text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center arrow-in-btn1">
