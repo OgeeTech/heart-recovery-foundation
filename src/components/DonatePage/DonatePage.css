@@ -202,3 +202,48 @@
   box-shadow: 0 6px 18px rgba(30, 62, 51, 0.2);
   color: #fff;
 }
+
+/* Add these fixes to your existing CSS */
+
+/* Make text container flexible */
+.detailRow > div {
+  flex: 1;
+  min-width: 0; /* Allow container to shrink */
+}
+
+/* Break long words like Bitcoin addresses */
+.break-all {
+  word-break: break-all;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 576px) {
+  /* Make copy button smaller on mobile */
+  .btn-outline-success {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  /* Adjust icon sizes */
+  .card-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Reduce spacing */
+  .payment-card .card-body {
+    padding: 1rem;
+  }
+  
+  .detailRow {
+    padding: 0.5rem;
+  }
+}
+
+
+.donate-section {
+  background-color: var(--background-light);
+  padding: 6rem 0;
+}
+
+/* ... rest of your existing CSS ... */
