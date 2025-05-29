@@ -18,17 +18,17 @@ const useCopyToClipboard = () => {
 
   const copy = useCallback(async (text) => {
     if (!navigator?.clipboard) {
-      toast.error("Clipboard not supported.", { className: "custom-toast" });
+      toast.error("Clipboard not supported.", { className: 'custom-toast' });
       return;
     }
     try {
       await navigator.clipboard.writeText(text);
       setCopiedText(text);
-      toast.success("Copied to clipboard!", { className: "custom-toast" });
+      toast.success("Copied to clipboard!", { className: 'custom-toast' });
       setTimeout(() => setCopiedText(null), 2000);
       return true;
     } catch (error) {
-      toast.error("Failed to copy.", { className: "custom-toast" });
+      toast.error("Failed to copy.", { className: 'custom-toast' });
       return false;
     }
   }, []);
@@ -48,10 +48,7 @@ const PaymentMethodCard = ({ icon, title, details }) => {
           <h5 className="card-title mb-0">{title}</h5>
         </div>
         {details.map((item, index) => (
-          <div
-            key={index}
-            className="d-flex justify-content-between align-items-center mb-2"
-          >
+          <div key={index} className="d-flex justify-content-between align-items-center mb-2">
             <div>
               <small className="text-muted">{item.label}</small>
               <p className="mb-0 font-monospace">{item.value}</p>
@@ -92,12 +89,11 @@ const DonatePage = () => {
     publicKey,
     text: "Donate Securely",
     onSuccess: () => {
-      toast.success("Payment Successful!", { className: "custom-toast" });
+      toast.success("Payment Successful!", { className: 'custom-toast' });
       setSubmitted(true);
       setForm({ name: "", email: "", amount: "" });
     },
-    onClose: () =>
-      toast.warn("Payment window closed.", { className: "custom-toast" }),
+    onClose: () => toast.warn("Payment window closed.", { className: 'custom-toast' }),
   };
 
   const paymentMethods = [
@@ -117,11 +113,7 @@ const DonatePage = () => {
       title: "Bank Transfer (NGN)",
       details: [
         { label: "Bank", value: "UBA", copyable: false },
-        {
-          label: "Account Name",
-          value: "Heart Recovery Foundation",
-          copyable: false,
-        },
+        { label: "Account Name", value: "Heart Recovery Foundation", copyable: false },
         { label: "Account Number", value: "1028027512", copyable: true },
       ],
     },
@@ -130,11 +122,7 @@ const DonatePage = () => {
       title: "Bank Transfer (USD)",
       details: [
         { label: "Bank", value: "UBA", copyable: false },
-        {
-          label: "Account Name",
-          value: "Heart Recovery Foundation",
-          copyable: false,
-        },
+        { label: "Account Name", value: "Heart Recovery Foundation", copyable: false },
         { label: "Account Number", value: "3004750720", copyable: true },
       ],
     },
@@ -145,14 +133,9 @@ const DonatePage = () => {
       <div className="container">
         <div className="text-center mb-5">
           <h2 className="display-5 fw-bold text-dark">Support Our Mission</h2>
-          <div
-            className="mx-auto my-3 bg-success"
-            style={{ width: "100px", height: "4px" }}
-          ></div>
+          <div className="mx-auto my-3 bg-success" style={{ width: '100px', height: '4px' }}></div>
           <p className="text-muted lead">
-            Your donation provides life-saving heart surgeries and support to
-            those in need. Every contribution, big or small, makes a profound
-            impact.
+            Your donation provides life-saving heart surgeries and support to those in need. Every contribution, big or small, makes a profound impact.
           </p>
         </div>
 
@@ -188,23 +171,16 @@ const DonatePage = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <CheckCircle
-                      size={48}
-                      className="text-success mx-auto mb-3"
-                    />
+                    <CheckCircle size={48} className="text-success mx-auto mb-3" />
                     <h3 className="h4 fw-bold text-dark">Thank You!</h3>
-                    <p className="text-muted">
-                      Your generosity is making a real impact.
-                    </p>
+                    <p className="text-muted">Your generosity is making a real impact.</p>
                   </motion.div>
                 ) : (
                   <motion.div key="form">
                     <h4 className="h5 text-center fw-bold text-success mb-3">
                       Quick & Secure Donation
                     </h4>
-                    <p className="text-center text-muted mb-4">
-                      Powered by Paystack
-                    </p>
+                    <p className="text-center text-muted mb-4">Powered by Paystack</p>
                     <div className="mb-3">
                       <input
                         type="text"
