@@ -1,61 +1,89 @@
+/* HeaderCarousel.css */
 :root {
   --bs-primary: #1e3e33;   /* Dark green */
   --secondary: #bdcb38;    /* Light green */
 }
 
-/* .header-container{
-  /* position: relative; */
-  /* width: 100%; */
-  /* overflow: hidden;  */
+.header-container {
+  position: relative;
+  overflow: hidden;
+}
 
-/* Carousel arrows container (the cycle) */
+/* Container adjustments */
+.container.position-relative {
+  max-width: 100%; 
+  margin: 0 auto;
+}
+
+/* Navigation buttons positioning */
+.carousel-control-prev,
+.carousel-control-next {
+  width: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.carousel-control-prev {
+  left: 15px;
+}
+
+.carousel-control-next {
+  right: 15px;
+}
+
+/* Button styling */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  width: 3rem;
-  height: 3rem;
-  background-color: var(--bs-primary);   /* Background = dark green */
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--bs-primary);
   border-radius: 50%;
   position: relative;
 }
 
-/* Customize the arrow using a mask image (Bootstrap uses SVG by default) */
 .carousel-control-prev-icon::after,
 .carousel-control-next-icon::after {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 0.7rem;
+  height: 0.7rem;
   transform: translate(-50%, -50%) rotate(45deg);
-  border: solid var(--secondary);       /* Arrow = light green */
+  border: solid var(--secondary);
   border-width: 0 3px 3px 0;
   display: inline-block;
 }
 
-/* Rotate arrows correctly */
 .carousel-control-prev-icon::after {
-  transform: translate(-50%, -50%) rotate(135deg); /* Point left */
+  transform: translate(-50%, -50%) rotate(135deg);
 }
 
 .carousel-control-next-icon::after {
-  transform: translate(-50%, -50%) rotate(-45deg); /* Point right */
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+/* Image and caption styling */
+.carousel-inner {
+  overflow: hidden;
+}
 
-/* 3) ensure the image sits below the overlay */
 .carousel-item img {
-  position: relative;
-  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .carousel-caption {
-  pointer-events: none; /* Allows clicks/swipes to pass through */
+  pointer-events: none;
 }
 
 .carousel-caption * {
-  pointer-events: auto; /* Enables interaction with the content inside */
+  pointer-events: auto;
 }
+
 /*** Header ***/
 .carousel-caption {
     top: 0;
@@ -70,44 +98,14 @@
     z-index: 1;
 }
 
-.carousel-control-prev,
-.carousel-control-next {
-    width: 15%;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    width: 3rem;
-    height: 3rem;
-    background-color: var(--dark);
-    border: 12px solid var(--dark);
-    border-radius: 3rem;
-}
-
-@media (max-width: 768px) {
-    #header-carousel .carousel-item {
-        position: relative;
-        min-height: 450px;
-    }
-    
-    #header-carousel .carousel-item img {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-}
-
-
-/* Base styles for dark green button */
+/* Button styles */
 .btn-2 {
-  background-color: #bdcb38 ;
+  background-color: #bdcb38;
   color: #1e3e33 !important;
   border: 1px solid transparent;
   transition: all 0.3s ease;
 }
 
-/* Circle styles */
 .btn-2 .btn-sm-square {
   background-color: #1e3e33  !important;
   width: 32px;
@@ -121,7 +119,6 @@
   color: #bdcb38  !important;
 }
 
-/* Hover styles */
 .btn-2:hover {
   background-color: transparent !important;
   border-color: #bdcb38 !important;
@@ -136,6 +133,29 @@
   color: #1e3e33 !important;
 }
 
-/* .next-arrow{
-  background-color:red !important;
-} */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #header-carousel .carousel-item {
+      min-height: 450px;
+      width: 100%;
+  }
+  
+  #header-carousel .carousel-item img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .carousel-control-prev-icon::after,
+  .carousel-control-next-icon::after {
+    width: 0.6rem;
+    height: 0.6rem;
+  }
+}
