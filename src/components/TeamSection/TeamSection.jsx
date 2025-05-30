@@ -8,7 +8,7 @@ import "./TeamSection.css";
 const teamMembers = [
 
   { img: "/img/officerblessing.jpg", name: "Blessing Moses", position: "Program Officer" },
-  { img: "/img/officer2.jpg", name: "Bala David", position: "ICT Technician" },
+  // { img: "/img/officer2.jpg", name: "Bala David", position: "ICT Technician" },
   { img: "/img/officeromolade.jpg", name: "Olude Omolade Christiana", position: "Information officer" },
   { img: "/img/officerlucky.jpg", name: "Mr. Osaretin Lucky", position: "Public health Consultant" },
   { img: "/img/officerjenifer.jpg", name: "Jennifer Labi", position: "Monitoring & Evaluation Officer" },
