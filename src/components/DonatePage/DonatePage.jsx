@@ -247,7 +247,7 @@ const DonatePage = () => {
                     <PaystackButton
                       {...paystackProps}
                       className="btn btn-paystack w-100 py-2 fw-semibold"
-                      disabled={!form.name || !form.email || !form.amount}
+                      disabled={!form.name || !form.email || !form.amount} 
                     />
                   </motion.div>
                 )}

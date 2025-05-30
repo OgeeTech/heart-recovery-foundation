@@ -1,10 +1,10 @@
-/* src/pages/Donate/DonatePage.module.css */
 
-/* --- Variable Definitions (unchanged) --- */
 :root {
   --primary-dark-green: #1e3e33;
   --accent-lime-green: #bdcb38;
   --background-light: #f7f9fc;
+  --disabled-bg-color: #6c757d; 
+  --disabled-text-color: #e3e6e9; 
   --text-primary: #212529;
   --text-secondary: #6c757d;
   --white-color: #ffffff;
@@ -188,22 +188,6 @@
   font-size: 0.95rem;
 }
 
-.btn-paystack {
-  background-color: var(--primary-dark-green);
-  color: #fff;
-  border: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  border-radius: 0.5rem;
-}
-
-.btn-paystack:hover {
-  background-color: #163027;
-  transform: scale(1.02);
-  box-shadow: 0 6px 18px rgba(30, 62, 51, 0.2);
-  color: #fff;
-}
-
-/* Add these fixes to your existing CSS */
 
 /* Make text container flexible */
 .detailRow > div {
@@ -247,3 +231,36 @@
 }
 
 /* ... rest of your existing CSS ... */
+
+.btn-paystack {
+  background-color: var(--primary-dark-green); /* Active background color */
+  color: var(--white-color); /* Active text color */
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 0.5rem; 
+  padding: 0.75rem 1.5rem; 
+  font-weight: 600; 
+  text-align: center;
+  cursor: pointer;
+  width: 100%; 
+}
+
+
+
+.btn-paystack:hover:not(:disabled) { 
+  background-color: #163027; 
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(30, 62, 51, 0.2);
+  color: var(--white-color); 
+}
+
+/* This is the key part for the "visible but grayed out" style */
+.btn-paystack:disabled {
+  background-color: var(--disabled-bg-color); 
+  color: var(--disabled-text-color);       /* Gray text */
+  cursor: not-allowed;                    
+  transform: none;                        
+  box-shadow: none;                        
+  opacity: 0.8;                            
+}
+
