@@ -27,7 +27,7 @@ const HeaderCarousel = () => {
         />
         <meta
           name="keywords"
-          content="Heart Recovery, About, Mission, Vision, Values, Nonprofit, Africa, Healthcare"
+          content="Heart Recovery, About, Mission, Vision, Values, Nonprofit, Africa, Healthcare, One Heart Beat, At A Time"
         />
         <meta
           property="og:title"
