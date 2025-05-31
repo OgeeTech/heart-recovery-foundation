@@ -86,7 +86,7 @@ const DonatePage = () => {
   const [form, setForm] = useState({ name: "", email: "", amount: "" });
   const [submitted, setSubmitted] = useState(false);
 
-  const publicKey = "pk_test_xxxxx"; // Replace with your Paystack public key
+  const publicKey = REACT_APP_PAYSTACK_PUBLIC_KEY;
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.id]: e.target.value });
@@ -247,7 +247,7 @@ const DonatePage = () => {
                     <PaystackButton
                       {...paystackProps}
                       className="btn btn-paystack w-100 py-2 fw-semibold"
-                      disabled={!form.name || !form.email || !form.amount} 
+                      disabled={!form.name || !form.email || !form.amount}
                     />
                   </motion.div>
                 )}
