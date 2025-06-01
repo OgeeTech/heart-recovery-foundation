@@ -86,7 +86,7 @@ const DonatePage = () => {
   const [form, setForm] = useState({ name: "", email: "", amount: "" });
   const [submitted, setSubmitted] = useState(false);
 
-  const publicKey = REACT_APP_PAYSTACK_PUBLIC_KEY;
+  const publicKey = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY;
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.id]: e.target.value });
