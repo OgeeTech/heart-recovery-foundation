@@ -9,19 +9,19 @@ const BoardOfTrusteesData = [
     text: `Suleiman Haruna is a versatile communicator, writer, and teacher who has worked with experienced and motivated experts and has grown to be a reference point and a candidate of choice whenever a good hand is required for service. He has also managed staff for over 20 years as Head of Information and Communication in various organizations, including a World Bank–assisted social investment programme, YESSO, a special intervention programme, SURE–P, and the Presidential Villa, working directly with the First Lady of Nigeria for seven years as Director of Information. He is currently Director of Public Relations at the Federal Ministry of Information. He holds a PhD in Development Communication from Ahmadu Bello University, Zaria.`,
   },
   {
-    img: "/img/board2.jpg",
+    img: "/img/board3.jpg",
     name: "Dr. James Nda Abalaka",
     profession: "Member, Board of Trustees",
     text: `Dr. Abalaka is a distinguished civil servant, scholar, and financial management expert with over three decades of experience. He holds a PhD in Management and has played a crucial role in public financial management reforms at the Office of the Accountant General of the Federation. A fellow of FCNA and FCTI, he has authored over 60 publications.`,
   },
   {
-    img: "/img/board4.jpg",
+    img: "/img/board2.jpg",
     name: "Dr. Sunday Adejoh Baba",
     profession: "Member, Board of Trustees",
     text: `Sunday Adejoh Baba is a seasoned public servant and communication expert with a PhD in New Media Research. He has led public communications at the national level and retired in 2024 as Special Assistant to the Minister of Information.`,
   },
   {
-    img: "/img/board3.jpg",
+    img: "/img/board4.jpg",
     name: "Dr. Adeleke A. Adeoye",
     profession: "Member, Board of Trustees",
     text: `Adeleke A. Adeoye is a Public Health Physician with a decade in both private and public sectors. He earned a NYSC Meritorious Award and is currently undertaking doctoral training in South Australia.`,
