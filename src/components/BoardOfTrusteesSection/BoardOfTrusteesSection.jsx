@@ -15,13 +15,13 @@ const BoardOfTrusteesData = [
     text: `Dr. Abalaka is a distinguished civil servant, scholar, and financial management expert with over three decades of experience. He holds a PhD in Management and has played a crucial role in public financial management reforms at the Office of the Accountant General of the Federation. A fellow of FCNA and FCTI, he has authored over 60 publications.`,
   },
   {
-    img: "/img/board3.jpg",
+    img: "/img/board4.jpg",
     name: "Dr. Sunday Adejoh Baba",
     profession: "Member, Board of Trustees",
     text: `Sunday Adejoh Baba is a seasoned public servant and communication expert with a PhD in New Media Research. He has led public communications at the national level and retired in 2024 as Special Assistant to the Minister of Information.`,
   },
   {
-    img: "/img/board4.jpg",
+    img: "/img/board3.jpg",
     name: "Dr. Adeleke A. Adeoye",
     profession: "Member, Board of Trustees",
     text: `Adeleke A. Adeoye is a Public Health Physician with a decade in both private and public sectors. He earned a NYSC Meritorious Award and is currently undertaking doctoral training in South Australia.`,
