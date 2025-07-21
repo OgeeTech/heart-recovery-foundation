@@ -9,7 +9,7 @@ const BoardOfTrusteesData = [
     text: `Suleiman Haruna is a versatile communicator, writer, and teacher who has worked with experienced and motivated experts and has grown to be a reference point and a candidate of choice whenever a good hand is required for service. He has also managed staff for over 20 years as Head of Information and Communication in various organizations, including a World Bank–assisted social investment programme, YESSO, a special intervention programme, SURE–P, and the Presidential Villa, working directly with the First Lady of Nigeria for seven years as Director of Information. He is currently Director of Public Relations at the Federal Ministry of Information. He holds a PhD in Development Communication from Ahmadu Bello University, Zaria.`,
   },
   {
-    img: "/img/board3.jpg",
+    img: "/img/board4.jpg",
     name: "Dr. James Nda Abalaka",
     profession: "Member, Board of Trustees",
     text: `Dr. Abalaka is a distinguished civil servant, scholar, and financial management expert with over three decades of experience. He holds a PhD in Management and has played a crucial role in public financial management reforms at the Office of the Accountant General of the Federation. A fellow of FCNA and FCTI, he has authored over 60 publications.`,
@@ -21,7 +21,7 @@ const BoardOfTrusteesData = [
     text: `Sunday Adejoh Baba is a seasoned public servant and communication expert with a PhD in New Media Research. He has led public communications at the national level and retired in 2024 as Special Assistant to the Minister of Information.`,
   },
   {
-    img: "/img/board4.jpg",
+    img: "/img/board3.jpg",
     name: "Dr. Adeleke A. Adeoye",
     profession: "Member, Board of Trustees",
     text: `Adeleke A. Adeoye is a Public Health Physician with a decade in both private and public sectors. He earned a NYSC Meritorious Award and is currently undertaking doctoral training in South Australia.`,
@@ -42,15 +42,14 @@ const BoardOfTrusteesData = [
 
 const TrusteeCard = ({ trustee }) => {
   const [flipped, setFlipped] = useState(false);
-  const isMobileView =
-    typeof window !== "undefined" && window.innerWidth <= 600;
+  const isMobile = window.innerWidth <= 600;
 
   return (
     <div
       className="trustee-flip-card"
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
-      onClick={() => isMobileView && setFlipped((prev) => !prev)}
+      onClick={() => isMobile && setFlipped((prev) => !prev)}
     >
       <div className={`trustee-flip-inner ${flipped ? "flipped" : ""}`}>
         <div className="trustee-card-front">
@@ -59,7 +58,7 @@ const TrusteeCard = ({ trustee }) => {
           <p>{trustee.profession}</p>
         </div>
         <div className="trustee-card-back">
-          <p className="full-bio-text">{trustee.text}</p>
+          <p>{trustee.text}</p>
         </div>
       </div>
     </div>
@@ -68,100 +67,83 @@ const TrusteeCard = ({ trustee }) => {
 
 const BoardOfTrusteesSection = () => {
   const containerRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const cardsToShow = 4;
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
   const intervalRef = useRef(null);
+  const cardsToShow = 4;
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 600);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    const handleResize = () => setIsMobile(window.innerWidth <= 600);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const showNavigation =
-    BoardOfTrusteesData.length > (isMobile ? 1 : cardsToShow);
+  const scrollAmount = useCallback(() => {
+    if (!containerRef.current) return 0;
+    return isMobile
+      ? containerRef.current.offsetWidth
+      : containerRef.current.offsetWidth / cardsToShow;
+  }, [isMobile]);
 
-  const scrollItemWidth = isMobile
-    ? containerRef.current?.offsetWidth || 0
-    : containerRef.current?.offsetWidth / cardsToShow || 0;
-
-  // removed misplaced import
-
-  const handleNext = useCallback(() => {
+  const scrollNext = useCallback(() => {
     if (!containerRef.current) return;
-    const maxScroll =
-      containerRef.current.scrollWidth - containerRef.current.offsetWidth;
-    const atEnd = containerRef.current.scrollLeft >= maxScroll - 5;
-    const newLeft = atEnd
-      ? 0
-      : containerRef.current.scrollLeft + scrollItemWidth;
-    containerRef.current.scrollTo({ left: newLeft, behavior: "smooth" });
-  }, [scrollItemWidth]);
+    const scrollWidth = containerRef.current.scrollWidth;
+    const clientWidth = containerRef.current.offsetWidth;
+    const currentScroll = containerRef.current.scrollLeft;
+    const atEnd = currentScroll + clientWidth >= scrollWidth - 5;
 
-  const handlePrev = useCallback(() => {
+    containerRef.current.scrollTo({
+      left: atEnd ? 0 : currentScroll + scrollAmount(),
+      behavior: "smooth",
+    });
+  }, [scrollAmount]);
+
+  const scrollPrev = useCallback(() => {
     if (!containerRef.current) return;
-    const newLeft = Math.max(
-      containerRef.current.scrollLeft - scrollItemWidth,
-      0
-    );
-    containerRef.current.scrollTo({ left: newLeft, behavior: "smooth" });
-  }, [scrollItemWidth]);
+    containerRef.current.scrollTo({
+      left: Math.max(containerRef.current.scrollLeft - scrollAmount(), 0),
+      behavior: "smooth",
+    });
+  }, [scrollAmount]);
 
-  // ✅ Auto-scroll on all screen sizes
   useEffect(() => {
-    if (!containerRef.current) return;
-
-    intervalRef.current = setInterval(() => {
-      handleNext();
-    }, 3000);
-
+    intervalRef.current = setInterval(scrollNext, 3000);
     return () => clearInterval(intervalRef.current);
-  }, [handleNext, scrollItemWidth]);
+  }, [scrollNext]);
+
+  const handleMouseEnter = () => clearInterval(intervalRef.current);
+  const handleMouseLeave = () =>
+    (intervalRef.current = setInterval(scrollNext, 3000));
 
   return (
     <section className="board-section">
-      <h2 className="text-center mb-4 heading section-title">
-        Board Of Trustees
-      </h2>
+      <h2 className="section-title">Board Of Trustees</h2>
       <div className="trustee-carousel-container">
-        {showNavigation && (
-          <button
-            className="carousel-control-prev mobile-responsive"
-            onClick={handlePrev}
-            aria-label="Previous"
-          >
-            <span className="carousel-control-prev-icon" aria-hidden="true" />
-          </button>
-        )}
+        <button
+          className="carousel-control carousel-control-prev"
+          onClick={scrollPrev}
+          aria-label="Scroll Left"
+        >
+          ‹
+        </button>
         <div
           className="trustee-grid"
           ref={containerRef}
-          onMouseEnter={() => clearInterval(intervalRef.current)}
-          onMouseLeave={() => {
-            intervalRef.current = setInterval(() => {
-              handleNext();
-            }, 3000);
-          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
-          {BoardOfTrusteesData.map((t, i) => (
-            <div
-              key={i}
-              className={`trustee-item ${isMobile ? "mobile-card-item" : ""}`}
-            >
-              <TrusteeCard trustee={t} />
+          {BoardOfTrusteesData.map((trustee, index) => (
+            <div className="trustee-item" key={index}>
+              <TrusteeCard trustee={trustee} />
             </div>
           ))}
         </div>
-        {showNavigation && (
-          <button
-            className="carousel-control-next mobile-responsive"
-            onClick={handleNext}
-            aria-label="Next"
-          >
-            <span className="carousel-control-next-icon" aria-hidden="true" />
-          </button>
-        )}
+        <button
+          className="carousel-control carousel-control-next"
+          onClick={scrollNext}
+          aria-label="Scroll Right"
+        >
+          ›
+        </button>
       </div>
     </section>
   );
