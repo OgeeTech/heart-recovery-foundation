@@ -1,0 +1,37 @@
+.footer-container {
+    font-size: 0.85rem;
+  }
+  
+  .footer-container .btn-square {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 0.75rem;
+    border: 1px solid #bdcb38;
+    transition: background-color 0.3s;
+  }
+  
+  .footer-container .btn-square:hover {
+    background-color: #bdcb38;
+    color: #000;
+  }
+  
+  @media (max-width: 576px) {
+    .footer-container {
+      padding: 20px 10px;
+    }
+  
+    .footer-container .row > div {
+      text-align: center;
+    }
+  
+    .footer-container .btn-square {
+      margin: 0 4px;
+    }
+  
+    .footer-container p,
+    .footer-container a {
+      font-size: 0.75rem;
+    }
+  }
+  

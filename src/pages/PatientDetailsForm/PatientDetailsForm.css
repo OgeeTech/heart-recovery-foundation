@@ -1,0 +1,163 @@
+:root {
+    --bs-primary: #1e3e33;   /* Dark green */
+    --bs-secondary: #bdcb38; /* Light green */
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: #f0f4f2; /* soft mint green background */
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  
+  
+  
+  .patient-form {
+    max-width: 900px;
+    margin: 2rem auto;
+    background: #fefefe;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+    margin-top: 5rem; /* spacing from header */
+  }
+  
+  .patient-form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--bs-primary);
+  }
+  
+  /* Grid layout for inputs */
+  .grid-two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .grid-two-columns {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #333;
+    font-size: 0.95rem;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  input[type="tel"],
+  select,
+  textarea {
+    padding: 0.55rem 0.8rem;
+    font-size: 1rem;
+    border: 1.8px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 8px rgba(30, 62, 51, 0.2); /* dark green */
+  }
+  
+  /* Allergies pills group */
+  .allergies-group {
+    margin-bottom: 1.5rem;
+    border: none;
+  }
+  
+  .allergies-group legend {
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--bs-primary);
+  }
+  
+  .allergies-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+  
+  .pill-checkbox {
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    padding-left: 35px;
+    font-size: 0.9rem;
+    color: #333;
+    background: #e4e7eb;
+    border-radius: 25px;
+    padding: 8px 15px 8px 35px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 2.5px solid transparent;
+  }
+  
+  .pill-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .pill-checkbox input[type="checkbox"]:checked + span {
+    color: white;
+    background-color: var(--bs-secondary); /* light green */
+    border-color: var(--bs-primary);
+  }
+  
+  .pill-checkbox span {
+    pointer-events: none;
+  }
+  
+  /* Textareas */
+  textarea {
+    resize: vertical;
+  }
+  
+  /* Submit button */
+  .btn-submit {
+    background-color: var(--bs-primary);
+    color: white;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: 2rem auto 0;
+  }
+  
+  .btn-submit:hover {
+    background-color: var(--bs-secondary);
+    color: var(--bs-primary);
+  }
+  

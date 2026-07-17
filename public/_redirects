@@ -1,0 +1,5 @@
+/*    /index.html   200
+
+# Redirect www to non-www
+https://www.heartrecoveryfoundation.com/* https://heartrecoveryfoundation.com/:splat 301!
+

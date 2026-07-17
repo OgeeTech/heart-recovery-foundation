@@ -1,0 +1,46 @@
+/* Gallery Container Styles */
+.gallery-item {
+  position: relative;
+  cursor: pointer;
+  background-color: #fff;
+  /* Set a fixed aspect ratio so all images form a perfect grid */
+  aspect-ratio: 1 / 1;
+}
+
+/* Image Styles */
+.gallery-img {
+  object-fit: cover; /* Ensures the image fills the square without squishing */
+  transition: transform 0.5s ease;
+}
+
+/* Hover Zoom Effect */
+.gallery-item:hover .gallery-img {
+  transform: scale(1.1);
+}
+
+/* Dark Overlay on Hover */
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 62, 51, 0.7); /* Uses your primary dark green */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* Overlay Icon Animation */
+.gallery-overlay i {
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay i {
+  transform: translateY(0);
+}

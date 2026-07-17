@@ -1,0 +1,213 @@
+.fab:hover {
+  color: #fff;
+}
+.navbar-toggler {
+  border-color: #bdcb38; /* Optional: border color */
+}
+.transparent-navbar {
+  background: transparent !important;
+}
+
+.scrolled-navbar {
+  background: #1e3e33 !important;
+}
+
+.nav-with-bg {
+  background: #1e3e33 !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23bdcb38' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.top-bar .text-start,
+.top-bar .text-end {
+  display: flex;
+  align-items: center;
+}
+
+.top-bar .text-start > small {
+  margin-right: 1.5rem;
+}
+
+.top-bar .text-end > small {
+  margin-left: 0;
+}
+
+.top-bar .text-end > a {
+  margin-left: 0.75rem;
+}
+
+.logo-circle {
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 5px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-img {
+  width: 60px;
+  height: 60%;
+  align-items: center;
+}
+
+/* --- SAFELY REDUCE NAV HEIGHT --- */
+.navbar {
+  padding-top: 0.25rem !important; /* Reduces vertical space */
+  padding-bottom: 0.25rem !important; /* Reduces vertical space */
+}
+.navbar .navbar-nav .nav-link {
+  display: flex;
+  align-items: center; /* Keeps text perfectly centered vertically */
+}
+/* -------------------------------- */
+
+.transparent-navbar {
+  background-color: transparent !important;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.scrolled-navbar {
+  background-color: #1e3e33 !important;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* first button */
+.btn-outline-light .btn-sm-square {
+  background-color: #fff !important;
+}
+
+.btn-outline-light .btn-sm-square i {
+  color: #bdcb38;
+}
+
+.btn-outline-light:hover {
+  background-color: #bdcb38 !important;
+  color: #1e3e33 !important;
+}
+
+.btn-outline-light:hover .btn-sm-square {
+  background-color: #fff !important;
+}
+
+.btn-outline-light:hover .btn-sm-square i {
+  color: #1e3e33 !important;
+}
+
+/*second button*/
+.goog-te-banner-frame.skiptranslate,
+body > .skiptranslate,
+.goog-logo-link,
+.goog-te-gadget,
+#google_translate_element,
+#goog-gt-tt,
+.goog-te-gadget-icon {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+.lang-flag {
+  width: 24px;
+  height: 16px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+/* Mobile donate button (d-lg-none) */
+.mobile-btn {
+  background: #1e3e33 !important;
+  color: #bdcb38;
+  font-size: 14px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-btn:hover {
+  background-color: #bdcb38 !important;
+  color: #1e3e33 !important;
+  border: 2px solid #1e3e33 !important;
+}
+
+.arrow-in-btn1 {
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+}
+
+/* --- ANNOUNCEMENT BAR --- */
+.announcement-bar {
+  background-color: var(--bs-primary);
+  overflow: hidden;
+}
+
+.announcement-bar a:hover {
+  color: var(--secondary) !important;
+  transition: color 0.2s ease;
+}
+
+/* MAKES THE ANNOUNCEMENT ICON RED */
+.announcement-bar .fa-bullhorn {
+  color: #e9061d !important;
+}
+/* --- Modern Animated Hamburger --- */
+.custom-toggler {
+  border: none !important; /* Removes the ugly box outline */
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 5px;
+}
+
+.hamburger-lines {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 20px;
+  width: 28px;
+}
+
+.hamburger-lines .line {
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 10px;
+  background: #bdcb38;
+  transition:
+    transform 0.4s ease-in-out,
+    opacity 0.3s ease-in-out;
+}
+
+/* Animate into an 'X' when Bootstrap opens the menu */
+.custom-toggler[aria-expanded="true"] .line1 {
+  transform: translateY(8.5px) rotate(45deg);
+}
+
+.custom-toggler[aria-expanded="true"] .line2 {
+  opacity: 0; /* Hides the middle line */
+}
+
+.custom-toggler[aria-expanded="true"] .line3 {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
